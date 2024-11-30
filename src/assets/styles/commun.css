@@ -12,6 +12,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.active-link {
+    color: var(--bleu-main)!important;
+}
+
 .bouton {
     display: flex;
     justify-content: center;
