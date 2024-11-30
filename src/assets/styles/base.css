@@ -16,9 +16,11 @@ nav {
     transform: translateX(-50%);
     border-radius: 15px;
     border: 2px solid white;
+    z-index: 5;
 
     * {
         cursor: pointer;
+        user-select: none;
     }
 
     img {
@@ -30,11 +32,12 @@ nav {
         align-items: center;
         gap: 20px;
 
-        span {
+        .nav-link {
             color: black;
             font-weight: bold;
             transition: color 0.3s ease;
             font-size: 1rem;
+            text-decoration: none;
 
             &:hover {
                 color: var(--bleu-main);
@@ -49,9 +52,19 @@ nav {
     }
 }
 
-.contenu {
-    padding-top: 120px;
+.contenu-intervachettes {
     min-height: 80vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+
+    .contenu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 50px;
+        padding-top: 120px;
+    }
 }
 
 
@@ -66,5 +79,6 @@ footer {
 
     img {
         height: 50px;
+        cursor: pointer;
     }
 }
