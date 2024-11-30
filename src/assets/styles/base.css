@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css');
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    height: 50px;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    border: 2px solid white;
+
+    * {
+        cursor: pointer;
+    }
+
+    img {
+        height: 100%;
+    }
+
+    .wrap-redirection {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        span {
+            color: black;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+
+            &:hover {
+                color: var(--bleu-main);
+            }
+        }
+
+        .bouton {
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.contenu {
+    padding-top: 120px;
+    min-height: 80vh;
+}
+
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f7f5fa;
+    width: 100%;
+    box-sizing: border-box;
+
+    img {
+        height: 50px;
+    }
+}
