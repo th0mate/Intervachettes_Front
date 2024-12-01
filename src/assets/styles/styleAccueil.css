@@ -1,7 +1,9 @@
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
 .grille-fond-accueil {
     display: flex;
+    flex-direction: column;
     position: relative;
-    height: 100vh;
     overflow: hidden;
 
     .background-grille {
@@ -13,7 +15,7 @@
     }
 
     .presentation-main {
-        padding-top: 30px;
+        padding-top: 200px;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -35,7 +37,7 @@
                 justify-content: space-between;
                 align-items: center;
                 gap: 20px;
-                padding-top: 20px;
+                padding-top: 10px;
 
                 .chiffre-cle {
                     display: flex;
@@ -43,13 +45,13 @@
                     gap: 10px;
 
                     .chiffre {
-                        font-size: 2.4em;
+                        font-size: 3.5em;
                         font-weight: bold;
                         color: var(--bleu-main);
                     }
 
                     span:not(.chiffre) {
-                        font-size: 1.3em;
+                        font-size: 1.7em;
                         color: black;
                         font-weight: bolder;
                         flex-wrap: wrap;
@@ -59,6 +61,72 @@
                 }
             }
 
+        }
+    }
+
+    .map-evenements {
+        padding-top: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 40px;
+        padding-bottom: 20px;
+
+        .bouton {
+            margin-top: 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            width: 325px;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 500px;
+            border-radius: 15px;
+        }
+    }
+
+}
+
+
+.highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 80px;
+
+    .grid-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 50px;
+        padding-top: 20px;
+        justify-content: center;
+        align-items: center;
+
+
+        .hightlight {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 25px;
+            border-radius: 25px;
+            border: 2px solid var(--gris-texte);
+            height: 80%;
+
+            * {
+                margin: 0;
+            }
+
+            img {
+                width: 60px;
+            }
+
+            .texte-gris-simple {
+                font-size: 1.1em;
+            }
         }
     }
 
