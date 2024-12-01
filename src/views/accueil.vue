@@ -26,7 +26,62 @@
       </div>
     </div>
 
+
+    <div class="map-evenements">
+      <div>
+        <div class="indicator"><span></span>Tous Les Événements</div>
+        <h1 class="grand-titre">Participer à un <span class="color-blue">événement</span></h1>
+        <span class="texte-gris-simple">Trouvez l'événement le plus proche de chez vous pour y participer.</span>
+        <div class="bouton icon-animation">Voir tous les événements<i class="fi fi-rr-arrow-right"></i></div>
+      </div>
+      <img src="@/assets/img/map.png" alt="map"/>
+    </div>
+
   </section>
+
+
+  <section class="highlights">
+    <div class="indicator"><span></span>Points Forts</div>
+    <h1 class="grand-titre"><span class="color-blue">Intervachettes</span><br> dans les grandes lignes</h1>
+
+    <div class="grid-highlights">
+
+      <div class="hightlight">
+        <img src="@/assets/img/etoiles.png" alt="etoiles"/>
+        <h2>Haute personnalisation</h2>
+        <span class="texte-gris-simple">Créez votre événement Intervachettes et personnalisez-le selon vos envies !</span>
+      </div>
+      <div class="hightlight">
+        <img src="@/assets/img/taureau.png" alt="etoiles"/>
+        <h2>Nombreuses activités pour tous</h2>
+        <span class="texte-gris-simple">Profitez de nombreuses activités et jeux accessibles à tous, même aux plus jeunes.</span>
+      </div>
+      <div class="hightlight">
+        <img src="@/assets/img/euro.png" alt="etoiles"/>
+        <h2>Des prix attractifs</h2>
+        <span class="texte-gris-simple">Des prix adaptés à tous les budgets, pour profiter d'un événement local d'envergure.</span>
+      </div>
+      <div class="hightlight">
+        <img src="@/assets/img/famille.png" alt="etoiles"/>
+        <h2>A la porté de tous</h2>
+        <span class="texte-gris-simple">Si vous le souhaitez, vous pouvez organiser une session Intervachettes dans votre village !</span>
+      </div>
+      <div class="hightlight">
+        <img src="@/assets/img/graphique.png" alt="etoiles"/>
+        <h2>Des dizaines d'événements ajoutés</h2>
+        <span class="texte-gris-simple">Découvrez des dizaines d'événements ajoutés quotidiennement sur notre site !</span>
+      </div>
+      <div class="hightlight">
+        <img src="@/assets/img/sablier.png" alt="etoiles"/>
+        <h2>Durée variable</h2>
+        <span class="texte-gris-simple">Organisez des jeux contre plusieurs villes sur un jour ou deux semaines, selon vos envies !</span>
+      </div>
+
+
+
+    </div>
+  </section>
+
 </template>
 
 <style scoped>

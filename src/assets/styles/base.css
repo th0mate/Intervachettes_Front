@@ -76,6 +76,7 @@ footer {
     background: #f7f5fa;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 50px;
 
     img {
         height: 50px;
