@@ -12,4 +12,54 @@
         position: absolute;
     }
 
+    .presentation-main {
+        padding-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        gap: 40px;
+
+        img {
+            width: 500px;
+            border-radius: 15px;
+        }
+
+        div:not(.chiffres-cles) {
+            display: flex;
+            flex-direction: column;
+
+            .chiffres-cles {
+                display: flex;
+
+                justify-content: space-between;
+                align-items: center;
+                gap: 20px;
+                padding-top: 20px;
+
+                .chiffre-cle {
+                    display: flex;
+                    align-content: center;
+                    gap: 10px;
+
+                    .chiffre {
+                        font-size: 2.4em;
+                        font-weight: bold;
+                        color: var(--bleu-main);
+                    }
+
+                    span:not(.chiffre) {
+                        font-size: 1.3em;
+                        color: black;
+                        font-weight: bolder;
+                        flex-wrap: wrap;
+                        display: flex;
+                        align-content: center;
+                    }
+                }
+            }
+
+        }
+    }
+
 }
