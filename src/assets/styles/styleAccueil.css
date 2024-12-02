@@ -159,6 +159,7 @@ section {
     margin-top: 60px;
     padding-top: 20px;
     width: 100%;
+    padding-bottom: 70px;
 
     .wrap-presentation-sponsors {
         display: flex;
