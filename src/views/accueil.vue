@@ -76,9 +76,36 @@
         <h2>Durée variable</h2>
         <span class="texte-gris-simple">Organisez des jeux contre plusieurs villes sur un jour ou deux semaines, selon vos envies !</span>
       </div>
+    </div>
+  </section>
 
+  <section class="organiser">
+    <img src="@/assets/img/map.png" alt="map"/>
+    <div>
+      <div class="indicator"><span></span>Organiser un Intervachettes</div>
+      <h1 class="grand-titre">Organisez,<br> <span class="color-blue">vous aussi</span></h1>
+      <span class="texte-gris-simple">Vous aussi, organisez un événement Intervachettes dans votre ville !</span>
+      <div class="bouton icon-animation">Organisez votre événement<i class="fi fi-rr-arrow-right"></i></div>
+    </div>
+  </section>
 
+  <section class="contributors">
+    <div class="indicator"><span></span>Nos Sponsors</div>
+    <div class="wrap-presentation-sponsors">
+      <h1 class="grand-titre">Ils nous,<br> <span class="color-blue">soutiennent</span></h1>
+      <span class="texte-gris-simple">Nos sponsors nous accompagnent sur les événements Intervachettes pour financer les sessions de jeu dans votre ville.</span>
+    </div>
 
+    <div class="wrap-sponsors">
+      <h2><span></span>Nos sponsors</h2>
+
+      <div class="sponsors">
+        <div class="sponsor"><img src="@/assets/img/logo_gitlab.png" alt="gitlab"></div>
+        <div class="sponsor"><img src="@/assets/img/logo_jetbrains.png" alt="gitlab"></div>
+        <div class="sponsor"><img src="@/assets/img/logo_airbus.png" alt="gitlab"></div>
+        <div class="sponsor"><img src="@/assets/img/logo_samsung.png" alt="gitlab"></div>
+        <div class="sponsor"><img src="@/assets/img/logo_dassault.png" alt="gitlab"></div>
+      </div>
     </div>
   </section>
 

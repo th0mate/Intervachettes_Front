@@ -54,8 +54,6 @@ nav {
 
 .contenu-intervachettes {
     min-height: 80vh;
-    padding-left: 75px;
-    padding-right: 75px;
     box-sizing: border-box;
 
     .contenu {
@@ -70,10 +68,11 @@ nav {
 
 footer {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background: #f7f5fa;
+    background: var(--gris-clair-background);
     width: 100%;
     box-sizing: border-box;
     margin-top: 50px;
