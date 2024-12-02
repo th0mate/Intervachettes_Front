@@ -21,8 +21,8 @@ function fermerMenu() {
     <div class="wrap-redirection">
       <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
       <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
-      <div class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
-      <div class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
+      <div @click="$router.push({name: 'connexion'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
+      <div @click="$router.push({name: 'inscription'})" class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
     </div>
 
     <div class="burger" @click="ouvrirMenu">
