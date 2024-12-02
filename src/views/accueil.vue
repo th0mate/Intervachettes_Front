@@ -80,7 +80,7 @@
   </section>
 
   <section class="organiser">
-    <img src="@/assets/img/map.png" alt="map"/>
+    <img src="@/assets/img/illu_organisation.webp" alt="map"/>
     <div>
       <div class="indicator"><span></span>Organiser un Intervachettes</div>
       <h1 class="grand-titre">Organisez,<br> <span class="color-blue">vous aussi</span></h1>
@@ -92,7 +92,7 @@
   <section class="contributors">
     <div class="indicator"><span></span>Nos Sponsors</div>
     <div class="wrap-presentation-sponsors">
-      <h1 class="grand-titre">Ils nous,<br> <span class="color-blue">soutiennent</span></h1>
+      <h1 class="grand-titre">Ils nous<br> <span class="color-blue">soutiennent</span></h1>
       <span class="texte-gris-simple">Nos sponsors nous accompagnent sur les événements Intervachettes pour financer les sessions de jeu dans votre ville.</span>
     </div>
 
