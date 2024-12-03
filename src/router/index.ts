@@ -22,6 +22,10 @@ const router = createRouter({
       path: '/inscription',
       name: 'inscription',
       component: () => import('@/views/inscription.vue')
+    },{
+      path: '/evenements',
+      name: 'evenements',
+      component: () => import('@/views/listeEvenements.vue')
     },
     {
       path: '/:pathMatch(.*)*',
