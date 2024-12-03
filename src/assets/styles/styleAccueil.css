@@ -249,12 +249,15 @@ RESPONSIVE
         gap: 20px;
 
         img {
-            width: 95%;
+            width: 95% !important;
             margin: auto;
         }
 
-        div:not(.chiffres-cles, .bouton) {
-            gap: 20px;
+        div:not(.chiffres-cles, .bouton, .indicator) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
             padding-top: 50px;
         }
     }
