@@ -197,6 +197,11 @@ RESPONSIVE
                             height: 35px;
                         }
                     }
+
+                    .bouton {
+                        margin-left: 50% !important;
+                        transform: translateX(-50%);
+                    }
                 }
             }
         }
