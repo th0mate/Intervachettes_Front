@@ -11,8 +11,8 @@
     align-items: center;
 
     .wrap-connexion-inscription {
-        width: 70%;
-        height: 70%;
+        width: 1000px;
+        height: 550px;
         border-radius: 20px;
         overflow: hidden;
         display: flex;
@@ -73,7 +73,7 @@
 
             form {
                 width: 100%;
-                display: flex;
+                display: inline-block;
                 flex-direction: column;
                 gap: 15px;
                 padding-top: 20px;
@@ -85,6 +85,7 @@
                     color: var(--gris-texte);
                     font-weight: 600;
                     font-size: 1.1em;
+                    padding-bottom: 15px;
 
                     input {
                         width: 100%;
@@ -101,7 +102,10 @@
                 }
 
                 .bouton {
-                    margin-top: 30px;
+                    margin-top: 10px;
+                    font-size: 1.1em;
+                    font-weight: bold;
+                    width: auto !important;
                 }
 
             }

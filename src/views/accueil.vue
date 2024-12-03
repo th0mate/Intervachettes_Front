@@ -113,4 +113,5 @@
 
 <style scoped>
 @import "@/assets/styles/styleAccueil.css";
+
 </style>

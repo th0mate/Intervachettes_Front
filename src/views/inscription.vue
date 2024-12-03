@@ -8,11 +8,33 @@
     <div class="wrap-connexion-inscription">
       <div class="illustation-login">
         <img src="@/assets/img/intervachettes_logo.png" alt="logo" class="logo"/>
-        <img src="@/assets/img/illuConnexion.png" alt="illustration"/>
+        <img src="@/assets/img/illuInscription.png" alt="illustration"/>
       </div>
 
       <div class="form-login">
-        <h1>Inscription</h1>
+        <h1>Bienvenue sur <span class="color-blue">Intervachettes</span> !</h1>
+        <h4>Créez votre profil pour accéder à davantage de fonctionnalités.</h4>
+
+        <form @submit.prevent="connect" class="content">
+
+          <label>
+            <span>Adresse mail</span>
+            <input type="email" v-model="email" required>
+          </label>
+
+          <label>
+            <span>Mot de passe</span>
+            <input type="password" v-model="password" required>
+          </label>
+
+          <label>
+            <span>Confirmer le mot de passe</span>
+            <input type="password" v-model="password" required>
+          </label>
+
+          <button type="submit" class="bouton icon-animation">Inscription<i class="fi fi-rr-arrow-right"></i></button>
+
+        </form>
       </div>
     </div>
 
@@ -21,4 +43,5 @@
 
 <style scoped>
 @import "@/assets/styles/styleConnexionInscription.css";
+
 </style>

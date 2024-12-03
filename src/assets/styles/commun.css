@@ -26,7 +26,7 @@ DEFINITION DES BOUTONS
 
 
 .bouton {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
@@ -34,6 +34,9 @@ DEFINITION DES BOUTONS
     transition: all 0.5s ease;
     border-radius: 50px;
     border: 2px solid var(--bleu-main);
+    margin: 0;
+    width: auto !important;
+
 
     i {
         display: flex;
@@ -67,18 +70,23 @@ DEFINITION DES BOUTONS
 .icon-animation {
     justify-content: flex-start;
     gap: 10px;
-    padding-right: 15px;
+    padding-right: 50px;
     background: var(--bleu-main);
     color: white;
+    position: relative;
 
     i {
         padding: 0;
         transition: all 0.5s ease;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
     }
 
     &:hover {
         i {
-            padding-left: 10px;
+            right: 10px;
         }
     }
 }

@@ -92,7 +92,6 @@ section {
         margin-top: 35px;
         font-size: 1.2em;
         font-weight: bold;
-        width: 350px !important;
         box-sizing: border-box;
     }
 
@@ -257,10 +256,6 @@ RESPONSIVE
         div:not(.chiffres-cles, .bouton) {
             gap: 20px;
             padding-top: 50px;
-        }
-
-        .bouton {
-            width: 360px !important;
         }
     }
 

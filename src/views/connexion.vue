@@ -27,7 +27,7 @@
             <input type="password" v-model="password" required>
           </label>
 
-          <div @click="this.form.submit" class="bouton icon-animation">Connexion<i class="fi fi-rr-arrow-right"></i></div>
+          <button type="submit" class="bouton icon-animation">Connexion<i class="fi fi-rr-arrow-right"></i></button>
 
         </form>
       </div>
@@ -38,4 +38,5 @@
 
 <style scoped>
 @import "@/assets/styles/styleConnexionInscription.css";
+
 </style>
