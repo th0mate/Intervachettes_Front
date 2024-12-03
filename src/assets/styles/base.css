@@ -181,3 +181,16 @@ RESPONSIVE
 }
 
 
+@media (max-width: 550px) {
+    footer {
+        flex-direction: column-reverse;
+        gap: 20px;
+        padding: 10px;
+
+        img {
+            height: 40px;
+        }
+    }
+}
+
+
