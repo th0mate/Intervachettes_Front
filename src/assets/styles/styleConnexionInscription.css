@@ -211,7 +211,30 @@ RESPONSIVE
 @media (max-width: 600px) {
 
     .wrap-connexion-inscription {
+        top: 57% !important;
         width: 95% !important;
+    }
+
+
+    @media (max-height: 840px) {
+
+        .wrap-connexion-inscription {
+
+            .illustation-login {
+                border-top-left-radius: 20px !important;
+                border-top-right-radius: 20px !important;
+            }
+
+            .form-login {
+                height: auto !important;
+                border-bottom-left-radius: 20px !important;
+                border-bottom-right-radius: 20px !important;
+                h4 {
+                    display: none;
+                }
+            }
+        }
+
     }
 
 }
