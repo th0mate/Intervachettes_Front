@@ -85,7 +85,7 @@
       <div class="indicator"><span></span>Organiser un Intervachettes</div>
       <h1 class="grand-titre">Organisez,<br> <span class="color-blue">vous aussi</span></h1>
       <span class="texte-gris-simple">Vous aussi, organisez un événement Intervachettes dans votre ville !</span>
-      <div class="bouton icon-animation">Organisez votre événement<i class="fi fi-rr-arrow-right"></i></div>
+      <div class="bouton icon-animation">Organisez maintenant<i class="fi fi-rr-arrow-right"></i></div>
     </div>
   </section>
 

@@ -206,3 +206,12 @@ RESPONSIVE
             }
         }
 }
+
+
+@media (max-width: 600px) {
+
+    .wrap-connexion-inscription {
+        width: 95% !important;
+    }
+
+}

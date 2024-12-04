@@ -207,6 +207,14 @@ RESPONSIVE
 
 }
 
+@media (max-width: 600px) {
+    .menu-responsive {
+        .logo {
+            height: 60px;
+        }
+    }
+}
+
 
 @media (max-width: 550px) {
 

@@ -287,3 +287,50 @@ RESPONSIVE
     }
 
 }
+
+
+@media (max-width: 600px) {
+
+    .tres-grand-titre {
+        font-size: 2.5em;
+    }
+
+    .grand-titre {
+        font-size: 2em;
+    }
+
+    .map-evenements, .organiser {
+
+        .bouton {
+            margin: auto;
+            width: auto !important;
+        }
+    }
+
+    .presentation-main {
+
+        div:not(.chiffres-cles) {
+            width: 100%;
+
+            .chiffres-cles {
+                width: auto !important;
+                flex-direction: column;
+                align-content: center;
+                gap: 20px;
+
+                .chiffre-cle {
+
+                    .chiffre {
+                        font-size: 2.5em;
+                    }
+
+                    span:not(.chiffre) {
+                        font-size: 1.2em;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
