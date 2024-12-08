@@ -1,7 +1,6 @@
 @import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
 
 section {
-    /* en haut et en bas puis sur les cotés */
     padding: 30px 70px;
     display: flex;
     gap: 20px;
@@ -34,10 +33,11 @@ section {
 }
 
 .wrap-liste {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 50px;
     align-items: center;
     justify-content: flex-start;
+    padding-top: 50px;
 
     padding-right: 0 !important;
 
@@ -117,6 +117,17 @@ section {
 
         }
 
+    }
+
+
+    .liste-evenements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        padding-right: 70px;
+        box-sizing: border-box;
     }
 
 }
