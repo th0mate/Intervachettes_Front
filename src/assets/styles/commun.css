@@ -2,7 +2,7 @@
     --gris-texte: #5B5C66;
     --bleu-main: #4361EE;
     --gris-fonce-titres: #28303F;
-    --gris-clair-background : #f7f5fa;
+    --gris-clair-background: #f7f5fa;
 }
 
 body {
@@ -152,4 +152,22 @@ DEFINITION DES INDICATEURS
 
 .color-blue {
     color: var(--bleu-main);
+}
+
+
+/**
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE COMMUN
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+@media (max-width: 700px) {
+    .tres-grand-titre {
+        font-size: 2.5em;
+    }
+
+    .grand-titre {
+        font-size: 2em;
+    }
 }

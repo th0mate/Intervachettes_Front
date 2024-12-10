@@ -291,14 +291,6 @@ RESPONSIVE
 
 @media (max-width: 600px) {
 
-    .tres-grand-titre {
-        font-size: 2.5em;
-    }
-
-    .grand-titre {
-        font-size: 2em;
-    }
-
     .map-evenements, .organiser {
 
         .bouton {

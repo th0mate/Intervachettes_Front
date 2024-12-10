@@ -244,3 +244,114 @@ STYLE DE LA RECHERCHE
     margin-right: 10px;
 }
 
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+@media (max-width: 1190px) {
+
+    .entete-liste {
+        flex-direction: column;
+        align-items: flex-start !important;
+        position: relative;
+        height: 300px;
+
+        .recherche-evenement {
+            position: absolute !important;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+}
+
+
+@media (max-width: 1050px) {
+
+    .presentation-liste {
+        flex-direction: column-reverse !important;
+        gap: 50px;
+        padding-bottom: 50px;
+
+        img {
+            margin: auto;
+        }
+    }
+}
+
+@media (max-width: 840px) {
+
+    .entete-liste {
+        flex-direction: column;
+        align-items: flex-start !important;
+        position: relative;
+        height: 350px;
+
+        .recherche-evenement {
+            position: absolute !important;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
+
+
+@media (max-width: 980px) {
+    section {
+        padding: 15px;
+    }
+
+    .liste-evenements {
+        padding-right: 0 !important;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .presentation-liste {
+        img:not(.deco) {
+            max-width: 90%;
+        }
+    }
+
+    .entete-liste {
+        height: 200px;
+
+        .recherche-evenement {
+            width: 350px !important;
+            height: 90px !important;
+            padding: 5px 5px 5px 60px !important;
+
+            h1 {
+                font-size: 1.3em !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+
+    .entete-liste {
+        height: 200px;
+
+        .recherche-evenement {
+            width: 300px !important;
+            height: 80px !important;
+            padding: 5px 5px 5px 60px !important;
+            gap: 5px !important;
+
+            h1 {
+                font-size: 1.2em !important;
+            }
+
+            .fake-barre {
+                height: 30px !important;
+            }
+        }
+    }
+}
+
