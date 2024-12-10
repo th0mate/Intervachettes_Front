@@ -49,6 +49,7 @@ function fermerMenu() {
 
   <footer>
     <span>©2024 Levy Vergnes Audouy Loye</span>
+    <span>Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></span>
     <img @click="$router.push({name: 'accueil'})" src="@/assets/img/intervachettes_logo.png" alt="logo" class="logo"/>
   </footer>
 </template>

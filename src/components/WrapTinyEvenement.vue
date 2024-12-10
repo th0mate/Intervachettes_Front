@@ -22,38 +22,38 @@ function loadGoogleMapsScript(apiKey: string): Promise<void> {
 }
 
 onMounted(async () => {
-  const openCageApiKey = '9926c5c68d1049699aa98588422de554';
-  const googleMapsApiKey = 'AIzaSyBWb0BhFaft2KGEB950XZKunK3-g0T-Uns';
-  const location = encodeURIComponent(props.evenement.lieu);
+  setTimeout(async () => {
+    const openCageApiKey = '9926c5c68d1049699aa98588422de554';
+    const googleMapsApiKey = 'AIzaSyBWb0BhFaft2KGEB950XZKunK3-g0T-Uns';
+    const location = encodeURIComponent(props.evenement.lieu);
 
-  try {
-    const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${openCageApiKey}`);
-    const data = await response.json();
+    try {
+      const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${openCageApiKey}`);
+      const data = await response.json();
 
-    if (data.results.length > 0) {
-      const {lat, lng} = data.results[0].geometry;
+      if (data.results.length > 0) {
+        const {lat, lng} = data.results[0].geometry;
 
-      await loadGoogleMapsScript(googleMapsApiKey);
+        await loadGoogleMapsScript(googleMapsApiKey);
 
-      console.log('map' + props.evenement.id);
+        const map = new google.maps.Map(document.getElementById('map' + props.evenement.id), {
+          center: {lat, lng},
+          zoom: 6,
+          disableDefaultUI: true,
+        });
 
-      const map = new google.maps.Map(document.getElementById('map' + props.evenement.id), {
-        center: {lat, lng},
-        zoom: 6,
-        disableDefaultUI: true, // Désactiver les boutons par défaut
-      });
-
-      new google.maps.Marker({
-        position: {lat, lng},
-        map,
-        title: props.evenement.lieu
-      });
-    } else {
-      console.error('Localisation non trouvée. Adresse sans doute incorrecte.');
+        new google.maps.Marker({
+          position: {lat, lng},
+          map,
+          title: props.evenement.lieu
+        });
+      } else {
+        console.error('Localisation non trouvée. Adresse sans doute incorrecte.');
+      }
+    } catch (error) {
+      console.error('Erreur Google Maps : ', error);
     }
-  } catch (error) {
-    console.error('Erreur Google Maps : ', error);
-  }
+  }, 500);
 });
 
 </script>
@@ -65,10 +65,10 @@ onMounted(async () => {
       <span class="texte-gris-simple description"><i
         class="fi fi-rr-quote-right reverse color-blue"></i> {{ evenement.description.substring(0, 300) + '...' }} <i
         class="fi fi-rr-quote-right color-blue"></i></span>
-      <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ evenement.dateDebut }} à {{
+      <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ evenement.dateDebut }} au {{
           evenement.dateFin
         }}</span>
-      <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i>{{ evenement.lieu }}</span>
+      <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">
             <span class="chiffre">10</span>
