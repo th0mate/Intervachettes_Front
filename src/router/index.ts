@@ -28,6 +28,11 @@ const router = createRouter({
       component: () => import('@/views/listeEvenements.vue')
     },
     {
+      path: '/evenements/:id',
+      name: 'singleEvenement',
+      component: () => import('@/views/singleEvenement.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: '/accueil'
     },

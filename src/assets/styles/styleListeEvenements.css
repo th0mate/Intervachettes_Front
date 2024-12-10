@@ -333,6 +333,17 @@ RESPONSIVE
     }
 }
 
+@media (max-width: 590px) {
+
+    .recherche-complete {
+        width: 95% !important;
+        height: auto !important;
+        min-height: 450px !important;
+        max-height: 95% !important;
+    }
+
+}
+
 @media (max-width: 500px) {
 
     .entete-liste {
