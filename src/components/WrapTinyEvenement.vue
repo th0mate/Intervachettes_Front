@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type {Evenement} from "@/types";
 import {onMounted} from 'vue';
+import router from "@/router";
 
 const props = defineProps<{ evenement: Evenement }>();
 
@@ -56,6 +57,10 @@ onMounted(async () => {
   }, 500);
 });
 
+function redirigerVersSingleEvenement() {
+  router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
+}
+
 </script>
 
 <template>
@@ -79,7 +84,7 @@ onMounted(async () => {
             <span>Candidats inscrits</span>
           </span>
       </div>
-      <div class="bouton icon-animation">En savoir plus<i class="fi fi-rr-arrow-right"></i></div>
+      <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">En savoir plus<i class="fi fi-rr-arrow-right"></i></div>
     </div>
     <div :id="'map' + evenement.id" class="map"></div>
   </div>
