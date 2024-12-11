@@ -26,16 +26,34 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="presentation-single-evenement">
-    <div>
-      <div class="indicator"><span></span>Événement</div>
-      <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.nom }}</h1>
-      <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
-      <img src="@/assets/img/deco-points.png" alt="" class="deco">
-      <div class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière</div>
-    </div>
-    <div id="map"></div>
-  </section>
+  <div class="singleEvenement">
+    <section class="presentation-single-evenement">
+      <div>
+        <div class="indicator"><span></span>Événement</div>
+        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.nom }}</h1>
+        <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
+        <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
+        <img src="@/assets/img/deco-points.png" alt="" class="deco">
+        <div class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière</div>
+      </div>
+      <div id="map"></div>
+    </section>
+
+
+    <section class="presentation-description">
+      <div class="indicator"><span></span>Description</div>
+      <h1 class="grand-titre">Les mots de <br><span class="color-blue">l'organisateur</span></h1>
+
+      <div>
+        <i class="fi fi-rr-quote-right reverse color-blue"></i>
+        <span class="texte-gris-simple">{{evenement.description}}</span>
+        <i class="fi fi-rr-quote-right color-blue"></i>
+      </div>
+    </section>
+
+    <p>h</p>
+
+  </div>
 </template>
 
 <style scoped>

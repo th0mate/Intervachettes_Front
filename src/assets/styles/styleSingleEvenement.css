@@ -1,0 +1,37 @@
+section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 75px;
+}
+
+.presentation-single-evenement {
+    margin-top: 50px;
+
+    div:not(.bouton, #map, .indicator) {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        max-width: calc(100% - 700px);
+
+        .deco {
+            position: absolute;
+            right: 0;
+            bottom: 150px;
+            width: 200px;
+        }
+    }
+
+    #map {
+        width: 500px;
+        height: 300px;
+        border-radius: 20px;
+    }
+}
+
+
+.presentation-description {
+    flex-direction: column;
+    background-color: var(--gris-clair-background);
+}
