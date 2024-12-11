@@ -1,0 +1,368 @@
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+section {
+    padding: 30px 70px;
+    display: flex;
+    gap: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+i {
+    vertical-align: center;
+}
+
+
+.presentation-liste {
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-content: flex-start;
+    margin-top: 150px;
+
+    img:not(.deco) {
+        max-width: 550px;
+    }
+
+    div {
+        position: relative;
+
+        .deco {
+            position: absolute;
+            right: 0;
+            top: 15%;
+            z-index: -1;
+            max-width: 200px;
+        }
+    }
+}
+
+.wrap-liste {
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 50px;
+
+    padding-right: 0 !important;
+
+    .entete-liste {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+
+
+        .presentation-liste-evenements {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+
+            .deco {
+                position: absolute;
+                left: 0;
+                bottom: 3%;
+                z-index: -1;
+                max-width: 200px;
+            }
+        }
+
+
+        .recherche-evenement {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            width: 550px;
+            height: 120px;
+            position: relative;
+            padding: 15px 15px 15px 70px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+
+            h1 {
+                color: white;
+                font-size: 2em;
+            }
+
+            div {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                background-color: white;
+                gap: 10px;
+                width: 90%;
+                height: 35px;
+                border: 1px solid var(--gris-texte);
+                border-radius: 5px;
+                padding: 5px 10px;
+                box-sizing: border-box;
+                cursor: pointer;
+
+
+                i {
+                    color: var(--gris-texte);
+                    font-size: 1.2em;
+                    /* on centre l'icone */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+        }
+
+    }
+
+
+    .liste-evenements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        width: 100%;
+        padding-right: 70px;
+        box-sizing: border-box;
+    }
+
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+STYLE DE LA RECHERCHE
+------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+.recherche-complete {
+    display: none;
+    width: 550px;
+    height: 450px;
+    background-color: white;
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+    .entete-recherche {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 10px;
+        box-sizing: border-box;
+        gap: 10px;
+        border-bottom: 1px solid #9e9e9e;
+
+        i {
+            font-size: 1.2em;
+            color: var(--gris-texte);
+        }
+
+        input {
+            border: none;
+            height: 100%;
+            width: 100%;
+            font-size: 1.1em;
+            color: var(--gris-texte);
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .resultats-recherche {
+        height: calc(100% - 40px);
+        width: 100%;
+        overflow-y: auto;
+        padding: 10px;
+        box-sizing: border-box;
+
+        span {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 5px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            color: var(--gris-texte);
+
+            img {
+                width: 25px;
+            }
+
+            &:hover {
+                background-color: var(--gris-clair-background);
+            }
+        }
+
+    }
+
+    .titre-recherche {
+        font-size: 1em;
+        color: var(--bleu-main);
+        font-weight: bold;
+        padding: 10px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
+
+
+.resultats-recherche::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+    padding-right: 10px;
+}
+
+.resultats-recherche::-webkit-scrollbar-thumb {
+    background-color: var(--bleu-main);
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+@media (max-width: 1190px) {
+
+    .entete-liste {
+        flex-direction: column;
+        align-items: flex-start !important;
+        position: relative;
+        height: 300px;
+
+        .recherche-evenement {
+            position: absolute !important;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+}
+
+
+@media (max-width: 1050px) {
+
+    .presentation-liste {
+        flex-direction: column-reverse !important;
+        gap: 50px;
+        padding-bottom: 50px;
+
+        img {
+            margin: auto;
+        }
+    }
+}
+
+@media (max-width: 840px) {
+
+    .entete-liste {
+        flex-direction: column;
+        align-items: flex-start !important;
+        position: relative;
+        height: 350px;
+
+        .recherche-evenement {
+            position: absolute !important;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
+
+
+@media (max-width: 980px) {
+    section {
+        padding: 15px;
+    }
+
+    .liste-evenements {
+        padding-right: 0 !important;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .presentation-liste {
+        img:not(.deco) {
+            max-width: 90%;
+        }
+    }
+
+    .entete-liste {
+        height: 200px;
+
+        .recherche-evenement {
+            width: 350px !important;
+            height: 90px !important;
+            padding: 5px 5px 5px 60px !important;
+
+            h1 {
+                font-size: 1.3em !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 590px) {
+
+    .recherche-complete {
+        width: 95% !important;
+        height: auto !important;
+        min-height: 450px !important;
+        max-height: 95% !important;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .entete-liste {
+        height: 200px;
+
+        .recherche-evenement {
+            width: 300px !important;
+            height: 80px !important;
+            padding: 5px 5px 5px 60px !important;
+            gap: 5px !important;
+
+            h1 {
+                font-size: 1.2em !important;
+            }
+
+            .fake-barre {
+                height: 30px !important;
+            }
+        }
+    }
+}
+
