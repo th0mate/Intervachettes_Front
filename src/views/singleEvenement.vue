@@ -8,6 +8,7 @@ import {afficherCarteGoogleMaps} from "@/assets/js/gestionGoogleMapsAPI.js";
 const route = useRoute()
 const id = route.params.id
 
+//TODO en attendant le lien avec l'API
 const evenement: Ref<Evenement> = ref(
   {
     id: 1,

@@ -47,6 +47,14 @@ function afficherRecherche() {
   fragment.appendChild(overlay);
   document.querySelector('.recherche-complete').style.display = 'flex';
   document.body.appendChild(fragment);
+  document.querySelector('.recherche-complete input').focus();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.body.removeChild(overlay);
+      document.querySelector('.recherche-complete').style.display = 'none';
+    }
+  });
 
   completerResultatsRecherche('');
 }
