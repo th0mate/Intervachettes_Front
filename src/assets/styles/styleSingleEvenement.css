@@ -34,4 +34,125 @@ section {
 .presentation-description {
     flex-direction: column;
     background-color: var(--gris-clair-background);
+
+    div:not(.indicator) {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+
+        i {
+            font-size: 2em;
+            display: inline-flex;
+            justify-content: flex-end;
+        }
+
+        .reverse {
+            display: inline-flex;
+            transform: scaleX(-1);
+            justify-content: flex-end;
+        }
+    }
+}
+
+.autres-infos-event {
+    padding-right: 0;
+    align-items: center;
+    padding-bottom: 50px;
+
+    .autres-infos {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .chiffres-cles {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            padding-top: 10px;
+
+            .chiffre-cle {
+                display: flex;
+                align-content: center;
+                gap: 10px;
+
+                .chiffre {
+                    font-size: 2.5em;
+                    font-weight: bold;
+                    color: var(--bleu-main);
+                }
+
+                span:not(.chiffre) {
+                    font-size: 1.2em;
+                    color: black;
+                    font-weight: bolder;
+                    flex-wrap: wrap;
+                    display: flex;
+                    align-content: center;
+                }
+            }
+        }
+
+    }
+
+    .pages-vertes {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 950px;
+        height: 350px;
+
+        .deco {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .infos {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            width: 80%;
+            box-sizing: border-box;
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                color: white;
+            }
+
+            .infos-organisateur {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                background-color: white;
+                border-radius: 15px;
+                gap: 30px;
+                color: var(--gris-texte);
+                width: 100%;
+
+                div:not(.bouton) {
+                    display: flex;
+                    gap: 15px;
+                    width: 100%;
+
+                    i {
+                        font-size: 1.5em;
+                    }
+                }
+
+
+            }
+        }
+    }
+
 }

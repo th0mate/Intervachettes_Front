@@ -11,7 +11,7 @@ const id = route.params.id
 const evenement: Ref<Evenement> = ref(
   {
     id: 1,
-    nom: "Lyon",
+    nom: "Montpellier",
     dateDebut: "24/12/2024",
     dateFin: "30/12/2024",
     lieu: "99 avenue d'Occitanie, 34000 Montpellier",
@@ -46,12 +46,52 @@ onMounted(async () => {
 
       <div>
         <i class="fi fi-rr-quote-right reverse color-blue"></i>
-        <span class="texte-gris-simple">{{evenement.description}}</span>
+        <span class="texte-gris-simple">{{ evenement.description }}</span>
         <i class="fi fi-rr-quote-right color-blue"></i>
       </div>
     </section>
 
-    <p>h</p>
+    <section class="autres-infos-event">
+      <div class="autres-infos">
+        <div class="indicator"><span></span>Participation</div>
+        <h1 class="grand-titre">Vous aussi, <br><span class="color-blue">participez</span></h1>
+
+        <span class="texte-gris-simple">
+          Vous aussi, inscrivez vous à l'événement en tant que candidat, pour vous affronter contre une autre équipe ! Vous pouvez également vous renseignez sur cet événement, pour y assister en tant que spectateur.
+        </span>
+
+        <div class="chiffres-cles">
+          <span class="chiffre-cle">
+            <span class="chiffre">10</span>
+            <span>Places restantes</span>
+          </span>
+          <span class="chiffre-cle">
+            <span class="chiffre">27</span>
+            <span>Candidats inscrits</span>
+          </span>
+        </div>
+
+        <span class="texte-gris-simple"><i
+          class="fi fi-rr-marker color-blue"></i> Du {{ evenement.dateDebut }} au {{ evenement.dateFin }}</span>
+        <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> {{ evenement.lieu }}</span>
+        <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">Inscription à l'événement<i class="fi fi-rr-arrow-right"></i></div>
+      </div>
+
+      <div class="pages-vertes">
+        <img src="@/assets/img/deco-infos-event.png" alt="deco" class="deco">
+        <div class="infos">
+          <h1>Organisé par :</h1>
+          <div class="infos-organisateur">
+            <div>
+              <i class="fi fi-rr-user"></i>
+              <span class="texte-gris-simple">Jérôme Lecompte</span>
+            </div>
+            <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">Voir sur PagesVertes<i class="fi fi-rr-arrow-right"></i></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
 
   </div>
 </template>
