@@ -156,3 +156,61 @@ section {
     }
 
 }
+
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+@media (max-width: 1190px) {
+    .autres-infos-event {
+        flex-direction: column;
+
+        .pages-vertes {
+            width: 400px;
+            height: 400px;
+
+            .deco {
+                border-radius: 30px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1175px) {
+    .presentation-single-evenement {
+        flex-direction: column;
+        gap: 20px;
+
+        div:not(.bouton, #map, .indicator) {
+            max-width: 100%;
+        }
+
+        #map {
+            width: 100%;
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    section {
+        padding: 20px 10px;
+    }
+
+    .autres-infos-event {
+
+        .pages-vertes {
+            width: 95%;
+            min-height: 400px;
+            height: auto !important;
+
+            .deco {
+                border-radius: 30px;
+            }
+        }
+    }
+}
