@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import {RouterLink, RouterView} from 'vue-router'
+import {apiStore} from "@/util/apiStore";
+import {ref} from 'vue';
 
 import '@/assets/js/gestionNavbar.js';
+import {Notifications, notify} from "@kyvg/vue3-notification";
 
 
 function ouvrirMenu() {
@@ -12,17 +15,31 @@ function fermerMenu() {
   document.querySelector('.menu-responsive').style.display = 'none';
 }
 
+const logout = () => {
+  notify({
+    type: 'success',
+    title: 'Déconnexion réussie',
+  });
+  apiStore.logout();
+}
+const loaded = ref(false);
+
+apiStore.refresh();
+
+loaded.value = true;
+
 </script>
 
 <template>
 
-  <nav>
+  <nav v-if="loaded">
     <img @click="$router.push({name: 'accueil'})" src="@/assets/img/intervachettes_logo.png" alt="logo" class="logo"/>
     <div class="wrap-redirection">
       <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
       <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
-      <div @click="$router.push({name: 'connexion'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
-      <div @click="$router.push({name: 'inscription'})" class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
+      <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'connexion'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
+      <div v-if="apiStore.estConnecte" @click="logout" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Déconnexion</div>
+      <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'inscription'})" class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
     </div>
 
     <div class="burger" @click="ouvrirMenu">
@@ -33,17 +50,19 @@ function fermerMenu() {
 
   </nav>
 
-  <div class="menu-responsive">
+  <div class="menu-responsive" v-if="loaded">
     <img @click="$router.push({name: 'accueil'})" src="@/assets/img/intervachettes_logo_white.png" alt="logo"
          class="logo"/>
     <i class="fi fi-rr-cross-small cross" @click="fermerMenu"></i>
     <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
     <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
-    <RouterLink to="/connexion" class="nav-link" active-class="active-link">CONNEXION</RouterLink>
-    <RouterLink to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
+    <RouterLink v-if="!apiStore.estConnecte" to="/connexion" class="nav-link" active-class="active-link">CONNEXION</RouterLink>
+    <span v-if="apiStore.estConnecte" class="nav-link" @click="logout">DÉCONNEXION</span>
+    <RouterLink v-if="!apiStore.estConnecte" to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
   </div>
 
   <div class="contenu-intervachettes">
+    <notifications position="bottom right" :duration="5000"/>
     <RouterView class="contenu"/>
   </div>
 
