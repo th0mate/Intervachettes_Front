@@ -34,7 +34,7 @@ onMounted(async () => {
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
-        <div class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière</div>
+        <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière</div>
       </div>
       <div id="map"></div>
     </section>
