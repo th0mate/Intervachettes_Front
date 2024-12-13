@@ -33,6 +33,11 @@ const router = createRouter({
       component: () => import('@/views/singleEvenement.vue')
     },
     {
+      path: '/evenements/creation',
+      name: 'creationEvenement',
+      component: () => import('@/views/creationEvenement.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: '/accueil'
     },
