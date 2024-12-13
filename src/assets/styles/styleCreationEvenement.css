@@ -1,0 +1,91 @@
+.creation-evenement {
+    min-height: 250vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center !important;
+    position: relative;
+
+    .fond-creation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+}
+
+.presentation-creation {
+    width: 90%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    background-color: white;
+    margin-top: 50px;
+
+    div:not(.bouton, .indicator) {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        h1 {
+            font-size: 2.7em;
+        }
+    }
+
+    img {
+        height: 250px;
+    }
+}
+
+.wrapForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 650px;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: white;
+    padding: 0;
+
+    .entete-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background-color: var(--gris-clair-background);
+        padding: 10px;
+        box-sizing: border-box;
+
+        img {
+            height: 50px;
+        }
+    }
+
+    form {
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            input, textarea {
+                padding: 5px;
+
+            }
+
+        }
+    }
+
+
+}
