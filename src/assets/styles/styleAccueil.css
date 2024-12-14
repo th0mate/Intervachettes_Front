@@ -106,6 +106,12 @@ section {
     }
 }
 
+.organiser {
+    img {
+        width: 550px;
+    }
+}
+
 
 .highlights {
     display: flex;
