@@ -24,7 +24,7 @@ section {
     }
 
     #map {
-        width: 500px;
+        width: 500px !important;
         height: 300px;
         border-radius: 20px;
     }
@@ -178,6 +178,10 @@ RESPONSIVE
             }
         }
     }
+
+    #map {
+        width: 95% !important;
+    }
 }
 
 @media (max-width: 1175px) {
@@ -190,7 +194,7 @@ RESPONSIVE
         }
 
         #map {
-            width: 100%;
+            width: 95% !important;
         }
     }
 }

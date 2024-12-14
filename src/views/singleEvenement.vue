@@ -2,7 +2,7 @@
 import {useRoute} from 'vue-router'
 import type {Evenement} from "@/types";
 import {onMounted, ref, type Ref} from "vue";
-import {afficherCarteGoogleMaps} from "@/assets/js/gestionGoogleMapsAPI.js";
+import GoogleMaps from "@/components/GoogleMaps.vue";
 
 
 const route = useRoute()
@@ -20,10 +20,6 @@ const evenement: Ref<Evenement> = ref(
     prix: 0,
   });
 
-onMounted(async () => {
-  await afficherCarteGoogleMaps(evenement.value.lieu, `map`);
-});
-
 </script>
 
 <template>
@@ -37,7 +33,7 @@ onMounted(async () => {
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
         <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière</div>
       </div>
-      <div id="map"></div>
+      <GoogleMaps id="map" :adresses=" [evenement.lieu] " :id-div="'map'"/>
     </section>
 
 

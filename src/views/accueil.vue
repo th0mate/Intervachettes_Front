@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import GoogleMaps from "@/components/GoogleMaps.vue";
 
+const tableauAdresses = ["99 avenue d'occitanie, 34000 Montpellier", "22 rue de Champdivers, 39500 Molay", "4 lot les jardins de saint genieis, 34800 Canet"];
 </script>
 
 <template>
@@ -35,7 +37,7 @@
         <div @click="$router.push({name: 'evenements'})" class="bouton icon-animation">Voir tous les événements<i
           class="fi fi-rr-arrow-right"></i></div>
       </div>
-      <img src="@/assets/img/map.png" alt="map"/>
+      <GoogleMaps class="map" :adresses=" tableauAdresses " :id-div="'mapEvenements'"/>
     </div>
 
   </section>

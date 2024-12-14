@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import type {Evenement} from "@/types";
-import {onMounted} from 'vue';
 import router from "@/router";
-import {afficherCarteGoogleMaps} from "@/assets/js/gestionGoogleMapsAPI.js";
+import GoogleMaps from "@/components/GoogleMaps.vue";
 
 const props = defineProps<{ evenement: Evenement }>();
 
-onMounted(async () => {
-  await afficherCarteGoogleMaps(props.evenement.lieu, `map${props.evenement.id}`);
-});
 
 function redirigerVersSingleEvenement() {
   router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
 }
+
+const adresseEnTableau = [props.evenement.lieu];
 
 </script>
 
@@ -39,7 +37,7 @@ function redirigerVersSingleEvenement() {
       </div>
       <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">En savoir plus<i class="fi fi-rr-arrow-right"></i></div>
     </div>
-    <div :id="'map' + evenement.id" class="map"></div>
+    <GoogleMaps  :adresses=" adresseEnTableau " :id-div="'map' + evenement.id"/>
   </div>
 </template>
 
