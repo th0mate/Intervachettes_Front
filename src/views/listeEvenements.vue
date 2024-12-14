@@ -4,6 +4,7 @@ import WrapTinyEvenement from "@/components/WrapTinyEvenement.vue";
 import type {Evenement} from "@/types";
 import iconPath from '@/assets/img/intervachettes_icon.png';
 import '@/assets/styles/styleListeEvenements.css';
+import router from "@/router";
 
 
 
@@ -33,6 +34,7 @@ const evenements: Ref<Evenement[]> = ref([
 function afficherRecherche() {
   const fragment = document.createDocumentFragment();
   const overlay = document.createElement('div');
+  overlay.className = 'overlay';
   overlay.style.zIndex = '9';
   overlay.style.position = 'fixed';
   overlay.style.top = '0';
@@ -70,6 +72,11 @@ function completerResultatsRecherche(inputUtilisateur: string) {
     if (evenement.lieu.toLowerCase().includes(inputUtilisateur.toLowerCase())) {
       const span = document.createElement('span');
       span.id = evenement.id.toString();
+      span.addEventListener('click', () => {
+        document.querySelector('.recherche-complete').style.display = 'none';
+        document.querySelector('.overlay')?.remove();
+        router.push({name: 'singleEvenement', params: {id: evenement.id}});
+      });
       const img = document.createElement('img');
       img.src = iconPath;
       img.alt = 'icone';
