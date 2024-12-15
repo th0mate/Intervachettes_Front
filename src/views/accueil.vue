@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import GoogleMaps from "@/components/GoogleMaps.vue";
 
+//TODO une vraie liste d'adresses
 const tableauAdresses = ["99 avenue d'occitanie, 34000 Montpellier", "22 rue de Champdivers, 39500 Molay", "4 lot les jardins de saint genieis, 34800 Canet"];
 </script>
 

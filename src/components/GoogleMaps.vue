@@ -35,7 +35,6 @@ async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
 
     map.fitBounds(bounds);
 
-    // Set a minimum zoom level
     const listener = google.maps.event.addListener(map, "idle", function() {
       if (map.getZoom() > 10) map.setZoom(6);
       google.maps.event.removeListener(listener);
