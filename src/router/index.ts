@@ -33,6 +33,11 @@ const router = createRouter({
       component: () => import('@/views/singleEvenement.vue')
     },
     {
+      path: '/utilisateur/:id',
+      name: 'compte',
+      component: () => import('@/views/compte.vue')
+    },
+    {
       path: '/evenements/creation',
       name: 'creationEvenement',
       component: () => import('@/views/creationEvenement.vue')
