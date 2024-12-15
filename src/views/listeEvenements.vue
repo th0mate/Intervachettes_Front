@@ -104,6 +104,13 @@ function completerResultatsRecherche(inputUtilisateur: string) {
     </div>
   </section>
 
+  <section class="wrap-creation">
+    <img src="@/assets/img/bandeau-decor.png" alt="Décoration" class="deco">
+    <h1>Vous souhaitez organiser votre événement ?</h1>
+    <span>Organisez maintenant votre propre événement dans votre ville, avec vos conditions !</span>
+    <div @click="$router.push({name: 'creationEvenement'})" class="bouton icon-animation">Organisez maintenant <i class="fi fi-rr-arrow-right"></i></div>
+  </section>
+
 
   <section class="wrap-liste">
 
