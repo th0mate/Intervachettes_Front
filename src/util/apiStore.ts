@@ -9,13 +9,14 @@ export const apiStore = reactive ({
       .then(reponsehttp => reponsehttp.json())
   },
 
-  login (login:string, password:string):Promise<{ success: boolean, error?: string }>{
-    return fetch(this.apiUrl+"auth", {
+  login(login: string, password: string): Promise<{ success: boolean, error?: string }> {
+    //console.log("Données envoyées LOGIN:" + login + " || " + password);
+    return fetch(this.apiUrl + "auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      credentials:'include',
+      credentials: 'include',
       body: JSON.stringify({login: login, password: password})
     })
       .then(reponsehttp => {
@@ -29,21 +30,21 @@ export const apiStore = reactive ({
             .then(reponseJSON => {
               this.utilisateurConnecte = reponseJSON;
               this.estConnecte = true;
-              console.log("utilisateurConnecte", this.estConnecte);
+              //console.log('Aprees connexion', this.estConnecte);
               return {success: true};
             })
         }
       })
   },
 
-  createRessource(ressource: string, data: any): Promise<any> {
-    return fetch(this.apiUrl + ressource, {
+  createRessource(ressource:string, data:any, refreshAllowed = true):Promise<{ success: boolean, error?: string }>{
+    //console.log("Données envoyées createRessource:", JSON.stringify(data));
+    return fetch(this.apiUrl+ressource, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      credentials: 'include',
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     })
       .then(reponsehttp => {
         if (reponsehttp.ok) {
@@ -53,8 +54,13 @@ export const apiStore = reactive ({
             })
         } else if (reponsehttp.status == 401 && refreshAllowed) {
           return this.refresh()
-            .then(
-              () => this.createRessource(ressource, data)
+            .then(refreshResponse => {
+                if (refreshResponse.success) {
+                  return this.createRessource(ressource, data, false);
+                } else {
+                  return { success: false, error: "Unauthorized, failure to refresh token." };
+                }
+              }
             )
         } else {
           return reponsehttp.json()
