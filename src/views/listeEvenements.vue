@@ -152,5 +152,4 @@ function completerResultatsRecherche(inputUtilisateur: string) {
 
 <style scoped>
 @import "@/assets/styles/styleListeEvenements.css";
-
 </style>

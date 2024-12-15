@@ -31,7 +31,8 @@ const evenement: Ref<Evenement> = ref(
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
-        <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière</div>
+        <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
+        </div>
       </div>
       <GoogleMaps id="map" :adresses=" [evenement.lieu] " :id-div="'map'"/>
     </section>
@@ -71,7 +72,8 @@ const evenement: Ref<Evenement> = ref(
         <span class="texte-gris-simple"><i
           class="fi fi-rr-marker color-blue"></i> Du {{ evenement.dateDebut }} au {{ evenement.dateFin }}</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> {{ evenement.lieu }}</span>
-        <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">Inscription à l'événement<i class="fi fi-rr-arrow-right"></i></div>
+        <div @click="TODO" class="bouton icon-animation">Inscription à l'événement<i class="fi fi-rr-arrow-right"></i>
+        </div>
       </div>
 
       <div class="pages-vertes">
@@ -83,7 +85,7 @@ const evenement: Ref<Evenement> = ref(
               <i class="fi fi-rr-user"></i>
               <span class="texte-gris-simple">Jérôme Lecompte</span>
             </div>
-            <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">Voir sur PagesVertes<i class="fi fi-rr-arrow-right"></i></div>
+            <div @click="TODO" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
           </div>
         </div>
       </div>
