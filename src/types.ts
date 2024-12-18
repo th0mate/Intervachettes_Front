@@ -8,8 +8,8 @@ export interface Utilisateur {
 export interface Evenement {
   id: number;
   nom: string;
-  dateDebut: string;
-  dateFin: string;
+  dateDebutEvenement: string;
+  dateFinEvenement: string;
   lieu: string;
   description: string;
   prix: number;

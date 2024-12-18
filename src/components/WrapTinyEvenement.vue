@@ -4,6 +4,18 @@ import {onMounted} from 'vue';
 
 const props = defineProps<{ evenement: Evenement }>();
 
+if (!props.evenement.lieu) {
+  props.evenement.lieu = "55 Rue du Faubourg Saint-Honoré, 75008 Paris"
+}
+
+/*const recherche = ref('');
+const resultatsFiltres = computed(() =>
+  evenements.value.filter(evenement =>
+    evenement.lieu.toLowerCase().includes(recherche.value.toLowerCase())
+  )
+);
+*/
+
 function loadGoogleMapsScript(apiKey: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.getElementById('google-maps-script')) {
@@ -65,9 +77,8 @@ onMounted(async () => {
       <span class="texte-gris-simple description"><i
         class="fi fi-rr-quote-right reverse color-blue"></i> {{ evenement.description.substring(0, 300) + '...' }} <i
         class="fi fi-rr-quote-right color-blue"></i></span>
-      <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ evenement.dateDebut }} au {{
-          evenement.dateFin
-        }}</span>
+      <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ new Date(evenement.dateDebutEvenement).toLocaleString("fr") }} au
+        {{ new Date(evenement.dateFinEvenement).toLocaleString("fr") }}</span>
       <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">

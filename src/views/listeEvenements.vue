@@ -4,31 +4,21 @@ import WrapTinyEvenement from "@/components/WrapTinyEvenement.vue";
 import type {Evenement} from "@/types";
 import iconPath from '@/assets/img/intervachettes_icon.png';
 import '@/assets/styles/styleListeEvenements.css';
+import {apiStore} from "@/util/apiStore";
 
 
 
 
 //TODO en attendant la liaison à l'API
-const evenements: Ref<Evenement[]> = ref([
-  {
-    id: 1,
-    nom: "Montpellier",
-    dateDebut: "24/12/2024",
-    dateFin: "30/12/2024",
-    lieu: "99 avenue d'Occitanie, 34000 Montpellier",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus et lectus vitae facilisis. Pellentesque a nulla hendrerit, maximus nisi eu, vehicula tellus. Duis interdum purus elementum tincidunt aliquam. Donec ipsum odio, tincidunt eget ipsum sit amet, pharetra tristique tortor. Suspendisse vestibulum ullamcorper nunc, sed sodales arcu feugiat non. Maecenas ut nunc in felis euismod tincidunt et in tellus. Sed magna augue, viverra vitae neque ultricies, fermentum ullamcorper odio. Quisque elementum lacus eu urna convallis dictum. Fusce eu mattis sapien. Cras semper accumsan sapien in vestibulum. Nam congue odio quis nibh tincidunt, ac facilisis lectus cursus. Proin pellentesque neque vel malesuada lacinia.",
-    prix: 0,
-  },
-  {
-    id: 2,
-    nom: "Canet",
-    dateDebut: "16/05/2025",
-    dateFin: "25/05/2025",
-    lieu: "4 lot les jardins de Saint Genieis, 34800 Canet",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus et lectus vitae facilisis. Pellentesque a nulla hendrerit, maximus nisi eu, vehicula tellus. Duis interdum purus elementum tincidunt aliquam. Donec ipsum odio, tincidunt eget ipsum sit amet, pharetra tristique tortor. Suspendisse vestibulum ullamcorper nunc, sed sodales arcu feugiat non. Maecenas ut nunc in felis euismod tincidunt et in tellus. Sed magna augue, viverra vitae neque ultricies, fermentum ullamcorper odio. Quisque elementum lacus eu urna convallis dictum. Fusce eu mattis sapien. Cras semper accumsan sapien in vestibulum. Nam congue odio quis nibh tincidunt, ac facilisis lectus cursus. Proin pellentesque neque vel malesuada lacinia.",
-    prix: 250,
-  },
-]);
+const evenements: Ref<Evenement[]> = ref([]);
+
+function chargerEvenements()
+{
+  apiStore.getAll('inter_vachettes')
+    .then(reponseJSON => {
+      evenements.value = reponseJSON['member'];
+    });
+}
 
 function afficherRecherche() {
   const fragment = document.createDocumentFragment();
@@ -74,7 +64,7 @@ function completerResultatsRecherche(inputUtilisateur: string) {
   resultats.appendChild(fragment);
 }
 
-
+chargerEvenements();
 </script>
 
 <template>
