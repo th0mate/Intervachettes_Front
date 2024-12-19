@@ -4,6 +4,7 @@ import WrapTinyEvenement from "@/components/WrapTinyEvenement.vue";
 import type {Evenement} from "@/types";
 import iconPath from '@/assets/img/intervachettes_icon.png';
 import '@/assets/styles/styleListeEvenements.css';
+import router from "@/router";
 import {apiStore} from "@/util/apiStore";
 
 
@@ -23,6 +24,7 @@ function chargerEvenements()
 function afficherRecherche() {
   const fragment = document.createDocumentFragment();
   const overlay = document.createElement('div');
+  overlay.className = 'overlay';
   overlay.style.zIndex = '9';
   overlay.style.position = 'fixed';
   overlay.style.top = '0';
@@ -37,6 +39,14 @@ function afficherRecherche() {
   fragment.appendChild(overlay);
   document.querySelector('.recherche-complete').style.display = 'flex';
   document.body.appendChild(fragment);
+  document.querySelector('.recherche-complete input').focus();
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.body.removeChild(overlay);
+      document.querySelector('.recherche-complete').style.display = 'none';
+    }
+  });
 
   completerResultatsRecherche('');
 }
@@ -52,6 +62,11 @@ function completerResultatsRecherche(inputUtilisateur: string) {
     if (evenement.adresse.toLowerCase().includes(inputUtilisateur.toLowerCase())) {
       const span = document.createElement('span');
       span.id = evenement.id.toString();
+      span.addEventListener('click', () => {
+        document.querySelector('.recherche-complete').style.display = 'none';
+        document.querySelector('.overlay')?.remove();
+        router.push({name: 'singleEvenement', params: {id: evenement.id}});
+      });
       const img = document.createElement('img');
       img.src = iconPath;
       img.alt = 'icone';
@@ -77,6 +92,13 @@ chargerEvenements();
       <span class="texte-gris-simple">Trouvez un événement Intervachettes proche de chez vous, pour y participer ou y assister !</span>
       <img src="@/assets/img/deco-points.png" alt="" class="deco">
     </div>
+  </section>
+
+  <section class="wrap-creation">
+    <img src="@/assets/img/bandeau-decor.png" alt="Décoration" class="deco">
+    <h1>Vous souhaitez organiser votre événement ?</h1>
+    <span>Organisez maintenant votre propre événement dans votre ville, avec vos conditions !</span>
+    <div @click="$router.push({name: 'creationEvenement'})" class="bouton icon-animation">Organisez maintenant <i class="fi fi-rr-arrow-right"></i></div>
   </section>
 
 
@@ -120,5 +142,4 @@ chargerEvenements();
 
 <style scoped>
 @import "@/assets/styles/styleListeEvenements.css";
-
 </style>
