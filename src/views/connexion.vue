@@ -1,5 +1,32 @@
 <script setup lang="ts">
+import {ref} from 'vue';
+import {apiStore} from "@/util/apiStore";
+import router from "@/router";
+import { notify } from "@kyvg/vue3-notification";
 
+const connectingUser = ref({
+  login: "",
+  password:""
+});
+
+function connect():void{
+  apiStore.login(connectingUser.value.login, connectingUser.value.password)
+    .then(reponseJSON => {
+      if (reponseJSON['success']) {
+        notify({
+          type: 'success',
+          title: 'Connexion réussie',
+        });
+        router.push({name: 'accueil'});
+      } else {
+        notify({
+          type: 'warn',
+          title: 'Connexion impossible',
+          text: 'Mot de passe ou identifiant incorrect'
+        });
+      }
+    });
+}
 </script>
 
 <template>
@@ -18,13 +45,13 @@
         <form @submit.prevent="connect" class="content">
 
           <label>
-            <span>Adresse mail</span>
-            <input type="email" v-model="email" required>
+            <span>Login</span>
+            <input type="text" v-model="connectingUser.login" required>
           </label>
 
           <label>
             <span>Mot de passe</span>
-            <input type="password" v-model="password" required>
+            <input type="password" v-model="connectingUser.password" required>
           </label>
 
           <button type="submit" class="bouton icon-animation">Connexion<i class="fi fi-rr-arrow-right"></i></button>

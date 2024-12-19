@@ -21,10 +21,9 @@ const adresseEnTableau = [props.evenement.lieu];
       <span class="texte-gris-simple description"><i
         class="fi fi-rr-quote-right reverse color-blue"></i> {{ evenement.description.substring(0, 300) + '...' }} <i
         class="fi fi-rr-quote-right color-blue"></i></span>
-      <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ evenement.dateDebut }} au {{
-          evenement.dateFin
-        }}</span>
-      <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
+      <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ new Date(evenement.dateDebutEvenement).toLocaleString("fr") }} au
+        {{ new Date(evenement.dateFinEvenement).toLocaleString("fr") }}</span>
+      <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">
             <span class="chiffre">10</span>

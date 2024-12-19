@@ -3,14 +3,17 @@ export interface Utilisateur {
   adresseMail: string;
   login: string;
   premium: boolean;
+  nom: string;
+  prenom: string;
+  code_pages_vertes : string;
 }
 
 export interface Evenement {
   id: number;
   nom: string;
-  dateDebut: string;
-  dateFin: string;
-  lieu: string;
+  dateDebutEvenement: string;
+  dateFinEvenement: string;
+  adresse: string;
   description: string;
   prix: number;
   organisateur: Utilisateur;
