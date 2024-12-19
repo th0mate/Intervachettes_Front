@@ -51,7 +51,7 @@ function completerResultatsRecherche(inputUtilisateur: string) {
   evenements.value.forEach((evenement) => {
     if (evenement.adresse.toLowerCase().includes(inputUtilisateur.toLowerCase())) {
       const span = document.createElement('span');
-      span.id = evenement.id.toString();
+      span.id = evenement.id;
       const img = document.createElement('img');
       img.src = iconPath;
       img.alt = 'icone';
