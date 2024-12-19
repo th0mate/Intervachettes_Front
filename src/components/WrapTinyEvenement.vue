@@ -11,7 +11,7 @@ function redirigerVersSingleEvenement() {
   router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
 }
 
-const adresseEnTableau = [props.evenement.lieu];
+const adresseEnTableau = [props.evenement.adresse];
 
 </script>
 
