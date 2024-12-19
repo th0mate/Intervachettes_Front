@@ -109,6 +109,7 @@ section {
 .organiser {
     img {
         width: 550px;
+        border-radius: 20px;
     }
 }
 
