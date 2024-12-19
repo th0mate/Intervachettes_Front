@@ -1,11 +1,24 @@
 <script setup lang="ts">
 import {ref, type Ref} from "vue";
 import WrapTinyEvenement from "@/components/WrapTinyEvenement.vue";
+import type {Evenement} from "@/types";
 import iconPath from '@/assets/img/intervachettes_icon.png';
 import '@/assets/styles/styleListeEvenements.css';
+import {apiStore} from "@/util/apiStore";
+
+
+
 
 //TODO en attendant la liaison à l'API
+const evenements: Ref<Evenement[]> = ref([]);
 
+function chargerEvenements()
+{
+  apiStore.getAll('inter_vachettes')
+      .then(reponseJSON => {
+        evenements.value = reponseJSON['member'];
+      });
+}
 
 function afficherRecherche() {
   const fragment = document.createDocumentFragment();
