@@ -4,14 +4,14 @@ import {onMounted} from 'vue';
 
 const props = defineProps<{ evenement: Evenement }>();
 
-if (!props.evenement.lieu) {
-  props.evenement.lieu = "55 Rue du Faubourg Saint-Honoré, 75008 Paris"
+if (!props.evenement.adresse) {
+  props.evenement.adresse = "55 Rue du Faubourg Saint-Honoré, 75008 Paris"
 }
 
 /*const recherche = ref('');
 const resultatsFiltres = computed(() =>
   evenements.value.filter(evenement =>
-    evenement.lieu.toLowerCase().includes(recherche.value.toLowerCase())
+    evenement.adresse.toLowerCase().includes(recherche.value.toLowerCase())
   )
 );
 */
@@ -37,7 +37,7 @@ onMounted(async () => {
   setTimeout(async () => {
     const openCageApiKey = '9926c5c68d1049699aa98588422de554';
     const googleMapsApiKey = 'AIzaSyBWb0BhFaft2KGEB950XZKunK3-g0T-Uns';
-    const location = encodeURIComponent(props.evenement.lieu);
+    const location = encodeURIComponent(props.evenement.adresse);
 
     try {
       const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${openCageApiKey}`);
@@ -57,7 +57,7 @@ onMounted(async () => {
         new google.maps.Marker({
           position: {lat, lng},
           map,
-          title: props.evenement.lieu
+          title: props.evenement.adresse
         });
       } else {
         console.error('Localisation non trouvée. Adresse sans doute incorrecte.');
@@ -79,7 +79,7 @@ onMounted(async () => {
         class="fi fi-rr-quote-right color-blue"></i></span>
       <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> Du {{ new Date(evenement.dateDebutEvenement).toLocaleString("fr") }} au
         {{ new Date(evenement.dateFinEvenement).toLocaleString("fr") }}</span>
-      <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
+      <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">
             <span class="chiffre">10</span>

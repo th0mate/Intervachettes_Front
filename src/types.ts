@@ -3,6 +3,9 @@ export interface Utilisateur {
   adresseMail: string;
   login: string;
   premium: boolean;
+  nom: string;
+  prenom: string;
+  code_pages_vertes : string;
 }
 
 export interface Evenement {
@@ -10,7 +13,7 @@ export interface Evenement {
   nom: string;
   dateDebutEvenement: string;
   dateFinEvenement: string;
-  lieu: string;
+  adresse: string;
   description: string;
   prix: number;
   organisateur: Utilisateur;

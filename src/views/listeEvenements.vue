@@ -49,14 +49,14 @@ function completerResultatsRecherche(inputUtilisateur: string) {
   resultats.innerHTML = '';
 
   evenements.value.forEach((evenement) => {
-    if (evenement.lieu.toLowerCase().includes(inputUtilisateur.toLowerCase())) {
+    if (evenement.adresse.toLowerCase().includes(inputUtilisateur.toLowerCase())) {
       const span = document.createElement('span');
       span.id = evenement.id.toString();
       const img = document.createElement('img');
       img.src = iconPath;
       img.alt = 'icone';
       span.appendChild(img);
-      span.appendChild(document.createTextNode(evenement.lieu));
+      span.appendChild(document.createTextNode(evenement.adresse));
       fragment.appendChild(span);
     }
   });
