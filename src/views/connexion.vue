@@ -15,14 +15,16 @@ function connect():void{
       if (reponseJSON['success']) {
         notify({
           type: 'success',
-          title: 'Connexion réussie',
+          title: 'Connecté avec succès',
+          group: 'custom-template'
         });
         router.push({name: 'accueil'});
       } else {
         notify({
-          type: 'warn',
-          title: 'Connexion impossible',
-          text: 'Mot de passe ou identifiant incorrect'
+          type: 'warning',
+          title: 'Échec de la connexion',
+          text: 'Mot de passe ou identifiant incorrect',
+          group: 'custom-template'
         });
       }
     });

@@ -15,18 +15,20 @@ function creerCompte(): void {
   if(apiStore.estConnecte)
   {
     notify({
-      type: 'warn',
-      title: 'Erreur',
-      text: "Vous ne pouvez pas vous inscrire si vous êtes connecté"
+      type: 'error',
+      title: 'Accès refusé',
+      text: 'Vous ne pouvez pas vous inscrire si vous êtes connecté',
+      group: 'custom-template'
     });
     return;
   }
   if(password.value != passwordConfirmation.value) // Si les 2 mots de passes sont différents, on ne lance pas de requête
   {
     notify({
-      type: 'warn',
-      title: 'Données éronnées',
-      text: "Les mots de passes doivent être identiques"
+      type: 'warning',
+      title: 'Données erronées',
+      text: 'Les mots de passes doivent être identiques',
+      group: 'custom-template'
     });
     return;
   }
@@ -42,6 +44,7 @@ function creerCompte(): void {
         notify({
           type: 'success',
           title: 'Connexion réussie',
+          group: 'custom-template'
         });
         router.push({ name: 'accueil' });
       } else {
@@ -49,16 +52,17 @@ function creerCompte(): void {
         notify({
           type: 'warn',
           title: 'Connexion impossible',
-          text: 'Mot de passe ou identifiant incorrect'
+          text: 'Mot de passe ou identifiant incorrect',
+          group: 'custom-template'
         });
       }
     })
     .catch(error => {
-      // Gestion des erreurs pour la création ou la connexion
       notify({
         type: 'error',
         title: 'Erreur',
-        text: `Une erreur est survenue : ${error.message || 'Action impossible'}`
+        text: `Une erreur est survenue : ${error.message || 'Action impossible'}`,
+        group: 'custom-template'
       });
     });
 }
