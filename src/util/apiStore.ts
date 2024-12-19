@@ -5,7 +5,6 @@ export const apiStore = reactive ({
   estConnecte:false,
 
   getAll(ressource:string):Promise<any>{
-    console.log(this.apiUrl + ressource);
     return fetch(this.apiUrl+ressource)
       .then(reponsehttp =>
         reponsehttp.json())

@@ -99,11 +99,6 @@ function creerCompte(): void {
             <input type="password" v-model="passwordConfirmation" required>
           </label>
 
-          <label>
-            <span>Bibliographie</span>
-            <input type="text" v-model="bibliographie">
-          </label>
-
           <button type="submit" class="bouton icon-animation">Inscription<i class="fi fi-rr-arrow-right"></i></button>
 
         </form>

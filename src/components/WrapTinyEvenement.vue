@@ -11,6 +11,7 @@ function redirigerVersSingleEvenement() {
   router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
 }
 
+const titre = props.evenement.adresse.split(' ').pop();
 const adresseEnTableau = [props.evenement.adresse];
 
 </script>
@@ -18,7 +19,7 @@ const adresseEnTableau = [props.evenement.adresse];
 <template>
   <div class="tinyEvenemenent">
     <div class="wrap-texte">
-      <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.nom }}</h1>
+      <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ titre }}</h1>
       <span class="texte-gris-simple description"><i
         class="fi fi-rr-quote-right reverse color-blue"></i> {{ evenement.description.substring(0, 300) + '...' }} <i
         class="fi fi-rr-quote-right color-blue"></i></span>
