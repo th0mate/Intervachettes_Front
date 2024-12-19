@@ -5,8 +5,10 @@ export const apiStore = reactive ({
   estConnecte:false,
 
   getAll(ressource:string):Promise<any>{
+    console.log(this.apiUrl + ressource);
     return fetch(this.apiUrl+ressource)
-      .then(reponsehttp => reponsehttp.json())
+      .then(reponsehttp =>
+        reponsehttp.json())
   },
 
   login(login: string, password: string): Promise<{ success: boolean, error?: string }> {

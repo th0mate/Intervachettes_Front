@@ -7,6 +7,7 @@ const props = defineProps<{ evenement: Evenement }>();
 
 
 function redirigerVersSingleEvenement() {
+  console.log(props.evenement.adresse);
   router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
 }
 
@@ -36,7 +37,7 @@ const adresseEnTableau = [props.evenement.lieu];
       </div>
       <div @click="redirigerVersSingleEvenement" class="bouton icon-animation">En savoir plus<i class="fi fi-rr-arrow-right"></i></div>
     </div>
-    <GoogleMaps  :adresses=" adresseEnTableau " :id-div="'map' + evenement.id"/>
+    <GoogleMaps  :adresses=" adresseEnTableau " :id-div="'map' + evenement.id" />
   </div>
 </template>
 
