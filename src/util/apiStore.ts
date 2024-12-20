@@ -132,7 +132,7 @@ export const apiStore = reactive ({
       })
   },
 
-  update(ressource: string, data: any, id: number): Promise<any> {
+  update(ressource: string, data: any, id: number, refreshAllowed: boolean = true): Promise<any> {
     return fetch(this.apiUrl + ressource + "/" + id, {
       method: "PATCH",
       headers: {
@@ -150,7 +150,7 @@ export const apiStore = reactive ({
         } else if (reponsehttp.status == 401 && refreshAllowed) {
           return this.refresh()
             .then(
-              () => this.update(ressource, data)
+              () => this.update(ressource, data, id, false)
             )
         } else {
           return reponsehttp.json()

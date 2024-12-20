@@ -10,7 +10,7 @@ const utilisateur = ref(props.utilisateur);
 
 const updateUser = () => {
   console.log(utilisateur.value);
-  apiStore.update('utilisateurs', utilisateur.value, apiStore.utilisateurConnecte)
+  apiStore.update('utilisateurs', utilisateur.value, apiStore.utilisateurConnecte, true)
     .then(() => {
       notify({
         type: 'success',
