@@ -9,7 +9,6 @@ import {apiStore} from "@/util/apiStore";
 
 
 
-//TODO en attendant la liaison à l'API
 const evenements: Ref<Evenement[]> = ref([]);
 
 function chargerEvenements()

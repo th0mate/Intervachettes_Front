@@ -14,6 +14,18 @@ export const apiStore = reactive ({
       .then(reponsehttp => reponsehttp.json())
   },
 
+  getRessourceConnected(ressource:string):Promise<any>{
+    return fetch(this.apiUrl+ressource,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: 'include'
+    })
+      .then(reponsehttp =>
+        reponsehttp.json())
+  },
+
   login(login: string, password: string): Promise<{ success: boolean, error?: string }> {
     //console.log("Données envoyées LOGIN:" + login + " || " + password);
     return fetch(this.apiUrl + "auth", {

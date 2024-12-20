@@ -30,3 +30,9 @@ export interface Utilisateur {
   Description: string;
   Facebook: string;
 }
+
+export interface Inscription {
+  id: number;
+  participant: Utilisateur;
+  evenements: Evenement;
+}

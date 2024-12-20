@@ -49,6 +49,11 @@ const router = createRouter({
       component: () => import('@/views/creationEvenement.vue')
     },
     {
+      path: '/utilisateurs/:id/inscriptions',
+      name: 'evenementsUtilisateurs',
+      component: () => import('@/views/evenementsUtilisateurs.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: '/accueil'
     },

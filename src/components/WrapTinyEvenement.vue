@@ -5,7 +5,6 @@ import GoogleMaps from "@/components/GoogleMaps.vue";
 
 const props = defineProps<{ evenement: Evenement }>();
 
-
 function redirigerVersSingleEvenement() {
   console.log(props.evenement.adresse);
   router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
@@ -13,6 +12,7 @@ function redirigerVersSingleEvenement() {
 
 const titre = props.evenement.adresse.split(' ').pop();
 const adresseEnTableau = [props.evenement.adresse];
+
 
 </script>
 
