@@ -21,3 +21,12 @@ export interface Evenement {
   prix: number;
   organisateur: Utilisateur;
 }
+
+export interface Utilisateur {
+  id: number;
+  adresseMail: string;
+  login: string;
+  codePagesVertes: string;
+  Description: string;
+  Facebook: string;
+}

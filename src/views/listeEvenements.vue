@@ -15,9 +15,9 @@ const evenements: Ref<Evenement[]> = ref([]);
 function chargerEvenements()
 {
   apiStore.getAll('inter_vachettes')
-    .then(reponseJSON => {
-      evenements.value = reponseJSON['member'];
-    });
+      .then(reponseJSON => {
+        evenements.value = reponseJSON['member'];
+      });
 }
 
 function afficherRecherche() {
@@ -51,7 +51,7 @@ function completerResultatsRecherche(inputUtilisateur: string) {
   evenements.value.forEach((evenement) => {
     if (evenement.adresse.toLowerCase().includes(inputUtilisateur.toLowerCase())) {
       const span = document.createElement('span');
-      span.id = evenement.id.toString();
+      span.id = evenement.id;
       const img = document.createElement('img');
       img.src = iconPath;
       img.alt = 'icone';

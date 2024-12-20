@@ -1,4 +1,25 @@
 <script setup lang="ts">
+import GoogleMaps from "@/components/GoogleMaps.vue";
+import {ref, type Ref} from "vue";
+import type {Evenement} from "@/types";
+import {apiStore} from "@/util/apiStore";
+
+
+const evenements: Ref<Evenement[]> = ref([]);
+let tableauAdresses: string[] = ref([]);
+let estCharge = ref(false);
+
+function chargerEvenements() {
+  apiStore.getAll('inter_vachettes')
+      .then(reponseJSON => {
+        evenements.value = reponseJSON['member'];
+        tableauAdresses = evenements.value.map(evenement => evenement.adresse);
+        estCharge.value = true;
+      });
+}
+
+chargerEvenements();
+
 
 </script>
 
@@ -32,9 +53,10 @@
         <div class="indicator"><span></span>Tous Les Événements</div>
         <h1 class="grand-titre">Participer à un <span class="color-blue">événement</span></h1>
         <span class="texte-gris-simple">Trouvez l'événement le plus proche de chez vous pour y participer.</span>
-        <div class="bouton icon-animation">Voir tous les événements<i class="fi fi-rr-arrow-right"></i></div>
+        <div @click="$router.push({name: 'evenements'})" class="bouton icon-animation">Voir tous les événements<i
+            class="fi fi-rr-arrow-right"></i></div>
       </div>
-      <img src="@/assets/img/map.png" alt="map"/>
+      <GoogleMaps v-if="estCharge" class="map" :id-div="'mapEvenements'" :adresses=" tableauAdresses " />
     </div>
 
   </section>
@@ -49,7 +71,8 @@
       <div class="hightlight">
         <img src="@/assets/img/etoiles.png" alt="etoiles"/>
         <h2>Haute personnalisation</h2>
-        <span class="texte-gris-simple">Créez votre événement Intervachettes et personnalisez-le selon vos envies !</span>
+        <span
+            class="texte-gris-simple">Créez votre événement Intervachettes et personnalisez-le selon vos envies !</span>
       </div>
       <div class="hightlight">
         <img src="@/assets/img/taureau.png" alt="etoiles"/>
@@ -69,7 +92,8 @@
       <div class="hightlight">
         <img src="@/assets/img/graphique.png" alt="etoiles"/>
         <h2>Des dizaines d'événements ajoutés</h2>
-        <span class="texte-gris-simple">Découvrez des dizaines d'événements ajoutés quotidiennement sur notre site !</span>
+        <span
+            class="texte-gris-simple">Découvrez des dizaines d'événements ajoutés quotidiennement sur notre site !</span>
       </div>
       <div class="hightlight">
         <img src="@/assets/img/sablier.png" alt="etoiles"/>
@@ -85,7 +109,8 @@
       <div class="indicator"><span></span>Organiser un Intervachettes</div>
       <h1 class="grand-titre">Organisez,<br> <span class="color-blue">vous aussi</span></h1>
       <span class="texte-gris-simple">Vous aussi, organisez un événement Intervachettes dans votre ville !</span>
-      <div class="bouton icon-animation">Organisez maintenant<i class="fi fi-rr-arrow-right"></i></div>
+      <div @click="$router.push({name: 'creationEvenement'})" class="bouton icon-animation">Organisez maintenant<i
+          class="fi fi-rr-arrow-right"></i></div>
     </div>
   </section>
 

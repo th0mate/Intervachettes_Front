@@ -36,6 +36,45 @@ i {
     }
 }
 
+
+.wrap-creation {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 70px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    * {
+        margin: 0;
+    }
+
+    img {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .icon-animation {
+        background-color: white;
+        color: var(--bleu-main);
+    }
+
+}
+
+
 .wrap-liste {
     flex-direction: column;
     gap: 50px;

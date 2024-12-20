@@ -95,9 +95,21 @@ section {
         box-sizing: border-box;
     }
 
-    img {
-        width: 500px;
+    .map {
+        width: 800px !important;
         border-radius: 15px;
+
+        * {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.organiser {
+    img {
+        width: 550px;
+        border-radius: 20px;
     }
 }
 
@@ -264,6 +276,11 @@ RESPONSIVE
 
     .map-evenements {
         flex-direction: column-reverse;
+
+        .map {
+            width: 95% !important;
+            margin: auto;
+        }
     }
 
     .wrap-presentation-sponsors {

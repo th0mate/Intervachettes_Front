@@ -36,7 +36,8 @@ DEFINITION DES BOUTONS
     border-radius: 50px;
     border: 2px solid var(--bleu-main);
     margin: 0;
-    width: auto !important;
+    width: fit-content;
+    font-weight: bold;
 
 
     i {
