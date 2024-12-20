@@ -41,16 +41,13 @@ const getImageSrc = (type: string) => {
     <div class="wrap-redirection">
       <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
       <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
-      <RouterLink :to="`/utilisateurs/${apiStore.utilisateurConnecte.id}/inscriptions`" v-if="apiStore.estConnecte" class="nav-link" active-class="active-link">Mes Events</RouterLink>
-      <div v-if="apiStore.estConnecte" @click="$router.push({name: 'evenementsUtilisateurs'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Mes Evenements</div>
       <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'connexion'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
-      <RouterLink v-if="apiStore.estConnecte" to="/userAccount" class="nav-link" active-class="active-link">MON COMPTE</RouterLink>
-      <div v-if="apiStore.estConnecte" @click="logout" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Déconnexion</div>
+      <div v-if="apiStore.estConnecte" @click="$router.push({name: 'userAccount'})" class="bouton fond-bleu"><i class="fi fi-tr-circle-user"></i>Mon Compte</div>
+      <div v-if="apiStore.estConnecte" @click="logout" class="bouton border-bleu"><i class="fi fi-rr-sign-out-alt"></i>Déconnexion</div>
       <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'inscription'})" class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
     </div>
 
-    <div class="burger" @click="ouvrirMenu">      component: () => import('@/views/evenementsUtilisateurs.vue')
-
+    <div class="burger" @click="ouvrirMenu">
       <span></span>
       <span></span>
       <span></span>

@@ -15,12 +15,13 @@
 
 .wrap-compte {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 50px;
     background-color: white;
     border-radius: 20px;
     overflow: hidden;
     width: 70%;
-    min-height: 550px;
+    height: 550px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -56,6 +57,10 @@
                 flex-direction: column;
                 gap: 15px;
 
+                .texte-gris-simple {
+                    font-size: 1em;
+                }
+
                 * {
                     margin: 0;
                 }
@@ -75,7 +80,23 @@
     }
 
     .droite-compte {
-
+        width: calc(100% - 400px);
+        overflow-x: auto;
     }
 
+    .droite-compte::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .droite-compte::-webkit-scrollbar-thumb {
+        background-color: var(--bleu-main);
+        border-radius: 10px;
+    }
+
+}
+
+.ongletCompte {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
 }

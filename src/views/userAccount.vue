@@ -5,107 +5,111 @@ import InformationUser from "@/components/informationUser.vue";
 import UpdateUser from "@/components/updateUser.vue";
 import type {Utilisateur} from "@/types";
 import router from "@/router";
-import { notify } from "@kyvg/vue3-notification";
+import {notify} from "@kyvg/vue3-notification";
+import EvenementsUser from "@/components/evenementsUser.vue";
+import {useRoute} from "vue-router";
+
+const route = useRoute();
+const id = route.params.id || apiStore.utilisateurConnecte;
 
 const id = ref(apiStore.utilisateurConnecte.id);
 const user:Ref<Utilisateur[]> = ref('Chargement');
 
-apiStore.getById('utilisateurs', id.value)
+const user = ref<Utilisateur | null>(null);
+const estUtilisateurConnecte = ref(false);
+
+if (apiStore.utilisateurConnecte === id) {
+  estUtilisateurConnecte.value = true;
+}
+
+apiStore.getById('utilisateurs', id)
   .then(reponseJSON => {
     user.value = reponseJSON;
   });
 
-const isEditing = ref(false);
-const toggleEdit = () => {
-  isEditing.value = !isEditing.value;
+const affichageAction = ref('profil');
+
+const toggleEdit = (action) => {
+  affichageAction.value = action;
 };
 
 const handleUpdate = () => {
-  isEditing.value = false;
+  affichageAction.value = 'profil';
 };
 
 const deleteUser = () => {
-  apiStore.delete('utilisateurs', id.value)
-    .then(() => {
-      notify({
-        type: 'success',
-        title: 'Utilisateur supprimé'
-      });
-      router.push({name: 'accueil'});
+  if (!estUtilisateurConnecte.value) {
+    notify({
+      type: 'error',
+      title: 'Impossible de supprimer le compte',
+      text: 'Vous ne pouvez pas supprimer un compte qui n\'est pas le votre',
+      group: 'custom-template'
     });
+  } else {
+    const confirmation = confirm('Voulez-vous vraiment supprimer votre compte ?');
+
+    if (confirmation) {
+      apiStore.delete('utilisateurs', id)
+        .then(() => {
+          notify({
+            type: 'success',
+            title: 'Compte supprimé avec succès',
+            group: 'custom-template'
+          });
+          router.push({name: 'accueil'});
+        });
+    } else {
+      notify({
+        type: 'info',
+        title: 'Suppression du compte annulée',
+        group: 'custom-template'
+      });
+    }
+  }
 };
 </script>
 
 <template>
-  <div v-if="user" class="compte-container">
-    <h1>Mon <span class="highlight">compte</span></h1>
-    <div class="profile-actions">
-      <p><strong>Nom :</strong> {{ user.nom || 'N/A' }}</p>
-      <p><strong>Prénom :</strong> {{ user.prenom || 'N/A' }}</p>
-    </div>
-    <div class="actions">
-      <button @click="toggleEdit" class="btn primary">{{ isEditing ? "Arrêter la modification" : "Modifier le compte" }}</button>
-      <button @click="deleteUser" class="btn danger">Supprimer le compte</button>
-    </div>
-  </div>
-  <div v-else>
-    <p>Utilisateur non connecté.</p>
-  </div>
-  <div v-if="isEditing">
-    <UpdateUser :utilisateur="user" @updated="handleUpdate"/>
-  </div>
-  <div v-else>
-    <InformationUser :utilisateur="user"/>
-  </div>
+  <section class="compte">
 
+    <div class="wrap-compte">
+
+      <div class="gauche-compte">
+        <div class="infos-compte">
+          <i class="fi fi-rr-user"></i>
+          <div>
+            <h1 v-if="user.prenom">{{ user.prenom || 'N/A' }} {{ user.nom || 'N/A' }}</h1>
+            <h1 v-if="!user.prenom">{{ user.login }}</h1>
+            <span class="texte-gris-simple">Compte Intervachettes</span>
+          </div>
+        </div>
+
+        <div class="actions-compte">
+          <span class="texte-gris-simple">Actions</span>
+          <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
+            arrière
+          </div>
+          <div v-if="estUtilisateurConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
+            class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="estUtilisateurConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le compte<i
+            class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="estUtilisateurConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
+            class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="estUtilisateurConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
+            class="fi fi-rr-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="droite-compte">
+
+        <InformationUser class="ongletCompte" v-if="affichageAction === 'profil'" :utilisateur="user"/>
+        <UpdateUser class="ongletCompte" v-if="affichageAction === 'editer'" :utilisateur="user" @updated="handleUpdate"/>
+        <EvenementsUser class="ongletCompte" v-if="affichageAction === 'events'" :utilisateur="user"/>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
-.compte-container {
-  font-family: Arial, sans-serif;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.highlight {
-  color: #007bff;
-}
-
-.profile-actions p {
-  margin: 0.5rem 0;
-}
-
-.actions {
-  margin-top: 2rem;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.btn.primary {
-  background-color: #007bff;
-  color: white;
-}
-
-.btn.primary:hover {
-  background-color: #0056b3;
-}
-
-.btn.danger {
-  background-color: #dc3545;
-  color: white;
-  margin-left: 1rem;
-}
-
-.btn.danger:hover {
-  background-color: #b02a37;
-}
+@import "@/assets/styles/styleCompte.css";
 </style>
