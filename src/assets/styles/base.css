@@ -233,6 +233,7 @@ RESPONSIVE
         font-size: 55px;
         font-weight: bolder;
         transition: all 0.5s ease;
+        cursor: pointer;
 
         &:hover {
             color: var(--bleu-main);

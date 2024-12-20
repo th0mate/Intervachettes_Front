@@ -65,7 +65,7 @@ const getImageSrc = (type: string) => {
     <RouterLink v-if="!apiStore.estConnecte" to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
   </div>
 
-  <notifications group="custom-template" position="bottom right" :duration="20000">
+  <notifications group="custom-template" position="bottom right" :duration="5000">
     <template #body="props">
       <div :class="['my-notification', props.item.type]">
         <img :src="getImageSrc(props.item.type)" alt="logo" class="logo"/>
