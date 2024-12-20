@@ -1,16 +1,17 @@
 import {reactive} from "vue";
-export const apiStore = reactive ({
+
+export const apiStore = reactive({
   apiUrl: "https://localhost/InterVachettesAPI/public/api/",
   utilisateurConnecte: null,
-  estConnecte:false,
+  estConnecte: false,
 
-  getAll(ressource:string):Promise<any>{
-    return fetch(this.apiUrl+ressource)
+  getAll(ressource: string): Promise<any> {
+    return fetch(this.apiUrl + ressource)
       .then(reponsehttp => reponsehttp.json())
   },
 
-  getById(ressource:string, id:number):Promise<any>{
-    return fetch(this.apiUrl+ressource+"/"+id)
+  getById(ressource: string, id: number): Promise<any> {
+    return fetch(this.apiUrl + ressource + "/" + id)
       .then(reponsehttp => reponsehttp.json())
   },
 
@@ -42,9 +43,9 @@ export const apiStore = reactive ({
       })
   },
 
-  createRessource(ressource:string, data:any, refreshAllowed = true):Promise<{ success: boolean, error?: string }>{
+  createRessource(ressource: string, data: any, refreshAllowed = true): Promise<{ success: boolean, error?: string }> {
     //console.log("Données envoyées createRessource:", JSON.stringify(data));
-    return fetch(this.apiUrl+ressource, {
+    return fetch(this.apiUrl + ressource, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -63,7 +64,7 @@ export const apiStore = reactive ({
                 if (refreshResponse.success) {
                   return this.createRessource(ressource, data, false);
                 } else {
-                  return { success: false, error: "Unauthorized, failure to refresh token." };
+                  return {success: false, error: "Unauthorized, failure to refresh token."};
                 }
               }
             )
@@ -120,8 +121,8 @@ export const apiStore = reactive ({
       })
   },
 
-  update(ressource: string, data: any, id:number): Promise<any> {
-    return fetch (this.apiUrl + ressource+"/"+id, {
+  update(ressource: string, data: any, id: number): Promise<any> {
+    return fetch(this.apiUrl + ressource + "/" + id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -147,5 +148,32 @@ export const apiStore = reactive ({
             })
         }
       })
-}
+  },
+
+    delete(ressource, id) {
+      return fetch(this.apiUrl + ressource + "/" + id, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      })
+        .then((reponsehttp) => {
+          if (reponsehttp.ok) {
+            this.utilisateurConnecte = null;
+            this.estConnecte = false;
+            return reponsehttp.text().then((text) => {
+              return text ? { success: true, data: JSON.parse(text) } : { success: true };
+            });
+          } else {
+            return reponsehttp.text().then((text) => {
+              const reponseJSON = text ? JSON.parse(text) : {};
+              return { success: false, error: reponseJSON.message || "Unknown error" };
+            });
+          }
+        });
+
+    },
+
+
 })

@@ -4,6 +4,8 @@ import { ref } from "vue";
 import InformationUser from "@/components/informationUser.vue";
 import UpdateUser from "@/components/updateUser.vue";
 import type {Utilisateur} from "@/types";
+import router from "@/router";
+import { notify } from "@kyvg/vue3-notification";
 
 const id = ref(apiStore.utilisateurConnecte);
 const user:Ref<Utilisateur[]> = ref('Chargement');
@@ -11,7 +13,6 @@ const user:Ref<Utilisateur[]> = ref('Chargement');
 apiStore.getById('utilisateurs', id.value)
   .then(reponseJSON => {
     user.value = reponseJSON;
-    console.log(user.value);
   });
 
 const isEditing = ref(false);
@@ -21,6 +22,17 @@ const toggleEdit = () => {
 
 const handleUpdate = () => {
   isEditing.value = false;
+};
+
+const deleteUser = () => {
+  apiStore.delete('utilisateurs', id.value)
+    .then(() => {
+      notify({
+        type: 'success',
+        title: 'Utilisateur supprimé'
+      });
+      router.push({name: 'accueil'});
+    });
 };
 </script>
 
@@ -33,7 +45,7 @@ const handleUpdate = () => {
     </div>
     <div class="actions">
       <button @click="toggleEdit" class="btn primary">{{ isEditing ? "Arrêter la modification" : "Modifier le compte" }}</button>
-      <button class="btn danger">Supprimer le compte</button>
+      <button @click="deleteUser" class="btn danger">Supprimer le compte</button>
     </div>
   </div>
   <div v-else>
