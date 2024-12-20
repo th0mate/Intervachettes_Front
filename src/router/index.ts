@@ -22,7 +22,13 @@ const router = createRouter({
       path: '/inscription',
       name: 'inscription',
       component: () => import('@/views/inscription.vue')
-    }, {
+    },
+    {
+      path: '/userAccount',
+      name: 'userAccount',
+      component: () => import('@/views/userAccount.vue')
+    },
+    {
       path: '/evenements',
       name: 'evenements',
       component: () => import('@/views/listeEvenements.vue')
