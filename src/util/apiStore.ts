@@ -1,7 +1,6 @@
 import {reactive} from "vue";
-
-export const apiStore = reactive({
-  apiUrl: "https://localhost/InterVachettesAPI/public/api/",
+export const apiStore = reactive ({
+  apiUrl: "http://localhost/InterVachettesAPI/public/api/",
   utilisateurConnecte: null,
   estConnecte: false,
 

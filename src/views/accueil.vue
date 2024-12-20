@@ -3,6 +3,7 @@ import GoogleMaps from "@/components/GoogleMaps.vue";
 import {ref, type Ref} from "vue";
 import type {Evenement} from "@/types";
 import {apiStore} from "@/util/apiStore";
+import {notify} from "@kyvg/vue3-notification";
 
 
 const evenements: Ref<Evenement[]> = ref([]);
@@ -19,7 +20,6 @@ function chargerEvenements() {
 }
 
 chargerEvenements();
-
 
 </script>
 
