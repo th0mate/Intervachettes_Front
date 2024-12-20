@@ -42,6 +42,7 @@ const getImageSrc = (type: string) => {
       <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
       <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
       <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'connexion'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
+      <RouterLink v-if="apiStore.estConnecte" to="/userAccount" class="nav-link" active-class="active-link">MON COMPTE</RouterLink>
       <div v-if="apiStore.estConnecte" @click="logout" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Déconnexion</div>
       <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'inscription'})" class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
     </div>
@@ -61,6 +62,7 @@ const getImageSrc = (type: string) => {
     <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
     <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
     <RouterLink v-if="!apiStore.estConnecte" to="/connexion" class="nav-link" active-class="active-link">CONNEXION</RouterLink>
+    <RouterLink v-if="apiStore.estConnecte" to="/userAccount" class="nav-link" active-class="active-link">MON COMPTE</RouterLink>
     <span v-if="apiStore.estConnecte" class="nav-link" @click="logout">DÉCONNEXION</span>
     <RouterLink v-if="!apiStore.estConnecte" to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
   </div>

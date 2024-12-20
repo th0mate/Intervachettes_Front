@@ -1,11 +1,14 @@
 export interface Utilisateur {
   id: number;
+  plainPassword: string;
   adresseMail: string;
   login: string;
   premium: boolean;
   nom: string;
   prenom: string;
   code_pages_vertes : string;
+  biographie : string;
+  facebook : string;
 }
 
 export interface Evenement {
