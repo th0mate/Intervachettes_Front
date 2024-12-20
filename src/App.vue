@@ -2,7 +2,6 @@
 import {RouterLink, RouterView} from 'vue-router'
 import {apiStore} from "@/util/apiStore";
 import {ref} from 'vue';
-
 import '@/assets/js/gestionNavbar.js';
 import {Notifications, notify} from "@kyvg/vue3-notification";
 
@@ -17,8 +16,9 @@ function fermerMenu() {
 
 const logout = () => {
   notify({
-    type: 'success',
-    title: 'Déconnexion réussie',
+    type: 'info',
+    title: 'Vous êtes déconnecté',
+    group: 'custom-template'
   });
   apiStore.logout();
 }
@@ -27,6 +27,10 @@ const loaded = ref(false);
 apiStore.refresh();
 
 loaded.value = true;
+
+const getImageSrc = (type: string) => {
+  return `/inter_vachettes_front/dist/src/assets/img/${type}.png`;
+};
 
 </script>
 
@@ -61,8 +65,19 @@ loaded.value = true;
     <RouterLink v-if="!apiStore.estConnecte" to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
   </div>
 
+  <notifications group="custom-template" position="bottom right" :duration="5000">
+    <template #body="props">
+      <div :class="['my-notification', props.item.type]">
+        <img :src="getImageSrc(props.item.type)" alt="logo" class="logo"/>
+        <div>
+          <p>{{ props.item.title }}</p>
+          <span>{{ props.item.text }}</span>
+        </div>
+      </div>
+    </template>
+  </notifications>
+
   <div class="contenu-intervachettes">
-    <notifications position="bottom right" :duration="5000"/>
     <RouterView class="contenu"/>
   </div>
 
@@ -71,8 +86,9 @@ loaded.value = true;
     <span>Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></span>
     <img @click="$router.push({name: 'accueil'})" src="@/assets/img/intervachettes_logo.png" alt="logo" class="logo"/>
   </footer>
+
 </template>
 
-<style scoped>
+<style>
 @import "@/assets/styles/base.css";
 </style>
