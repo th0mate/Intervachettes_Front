@@ -83,25 +83,6 @@ export const apiStore = reactive ({
       }
     },
 
-    async refresh(): Promise<any> {
-      const response = await fetch(this.apiUrl + "token/refresh", {
-        method: "POST",
-        credentials: 'include'
-      });
-
-      if (!response.ok) {
-        const responseJSON = await response.json();
-        return { success: false, error: responseJSON.message };
-      } else {
-        const responseJSON = await response.json();
-        this.utilisateurConnecte = responseJSON.id;
-        this.estConnecte = true;
-        return { success: true };
-      }
-    },
-
-
-
   logout(): Promise<any> {
     return fetch(this.apiUrl + "token/invalidate", {
       method: "POST",
