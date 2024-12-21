@@ -12,12 +12,12 @@ function redirigerPagesVertes() {
 
 <template>
   <div class="actionCompte">
-    <h1 class="grand-titre" v-if="apiStore.utilisateurConnecte === utilisateur.id">Mon <span class="color-blue">compte</span>
+    <h1 class="grand-titre" v-if="apiStore.utilisateurConnecte.id === utilisateur.id">Mon <span class="color-blue">compte</span>
     </h1>
     <h1 class="grand-titre" v-else>Profil de <span class="color-blue">{{ utilisateur.login }}</span></h1>
     <br>
     <div class="details-compte">
-      <div v-if="apiStore.utilisateurConnecte !== utilisateur.id" class="pages-vertes" @click="redirigerPagesVertes">
+      <div v-if="apiStore.utilisateurConnecte.id !== utilisateur.id" class="pages-vertes" @click="redirigerPagesVertes">
         <img src="@/assets/img/pages_vertes.png" alt="pages vertes" class="icone-pages-vertes">
         <span class="texte-gris-simple">Voir sur PagesVertes</span>
       </div>

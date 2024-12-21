@@ -23,8 +23,8 @@
     width: 70%;
     height: 550px;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 55%;
+    left: 48%;
     transform: translate(-50%, -50%);
 
     .gauche-compte, .droite-compte {
@@ -99,4 +99,55 @@
     box-sizing: border-box;
     padding: 20px;
     width: 100%;
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+@media (max-width: 1150px) {
+
+    .compte {
+        height: auto;
+        padding-bottom: 50px;
+    }
+
+    .wrap-compte {
+        flex-direction: column;
+        gap: 20px;
+        height: fit-content;
+        width: 95%;
+        position: inherit;
+        top: 0;
+        left: 0;
+        transform: none;
+
+        .gauche-compte {
+            width: 100%;
+            padding: 20px;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .droite-compte {
+            width: 100%;
+            overflow-x: hidden;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+
+    .wrap-compte {
+        .gauche-compte {
+            .actions-compte {
+                margin: auto;
+            }
+        }
+    }
+    
 }
