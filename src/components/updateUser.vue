@@ -7,7 +7,6 @@ const props = defineProps<{ utilisateur: Utilisateur }>();
 const emit = defineEmits<{ updated: () => void }>();
 
 const updateUser = () => {
-  console.log(props.utilisateur);
   apiStore.update('utilisateurs', props.utilisateur, apiStore.utilisateurConnecte, true)
     .then(() => {
       notify({
