@@ -54,39 +54,53 @@ export const apiStore = reactive ({
       })
   },
 
-  createRessource(ressource: string, data: any, refreshAllowed = true): Promise<{ success: boolean, error?: string }> {
-    //console.log("Données envoyées createRessource:", JSON.stringify(data));
-    return fetch(this.apiUrl + ressource, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data),
-    })
-      .then(reponsehttp => {
-        if (reponsehttp.ok) {
-          return reponsehttp.json()
-            .then(() => {
-              return {success: true};
-            })
-        } else if (reponsehttp.status == 401 && refreshAllowed) {
-          return this.refresh()
-            .then(refreshResponse => {
-                if (refreshResponse.success) {
-                  return this.createRessource(ressource, data, false);
-                } else {
-                  return {success: false, error: "Unauthorized, failure to refresh token."};
-                }
-              }
-            )
+
+
+
+    async createRessource(ressource: string, data: any, refreshAllowed = true): Promise<{ success: boolean, error?: string }> {
+      console.log("Données envoyées createRessource:", JSON.stringify(data));
+      const response = await fetch(this.apiUrl + ressource, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        return { success: true };
+      } else if (response.status === 401 && refreshAllowed) {
+        const refreshResponse = await this.refresh();
+        if (refreshResponse.success) {
+          return this.createRessource(ressource, data, false);
         } else {
-          return reponsehttp.json()
-            .then(reponseJSON => {
-              return {success: false, error: reponseJSON.message};
-            })
+          return { success: false, error: "Unauthorized, failure to refresh token." };
         }
-      })
-  },
+      } else {
+        const responseJSON = await response.json();
+        return { success: false, error: responseJSON.message };
+      }
+    },
+
+    async refresh(): Promise<any> {
+      const response = await fetch(this.apiUrl + "token/refresh", {
+        method: "POST",
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        const responseJSON = await response.json();
+        return { success: false, error: responseJSON.message };
+      } else {
+        const responseJSON = await response.json();
+        this.utilisateurConnecte = responseJSON.id;
+        this.estConnecte = true;
+        return { success: true };
+      }
+    },
+
+
 
   logout(): Promise<any> {
     return fetch(this.apiUrl + "token/invalidate", {
