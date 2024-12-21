@@ -2,16 +2,24 @@
 import type {Evenement} from "@/types";
 import router from "@/router";
 import GoogleMaps from "@/components/GoogleMaps.vue";
+import {ref, type Ref} from "vue";
+import {apiStore} from "@/util/apiStore";
 
 const props = defineProps<{ evenement: Evenement }>();
 
 function redirigerVersSingleEvenement() {
-  console.log(props.evenement.adresse);
   router.push({name: 'singleEvenement', params: {id: props.evenement.id}});
 }
 
 const titre = props.evenement.adresse.split(' ').pop();
 const adresseEnTableau = [props.evenement.adresse];
+
+const nbParticipants:Ref<Inscription[]> = ref([]);
+
+apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
+  .then(reponseJSON => {
+    nbParticipants.value = reponseJSON.member;
+  });
 
 
 </script>
@@ -28,11 +36,11 @@ const adresseEnTableau = [props.evenement.adresse];
       <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">10</span>
+            <span class="chiffre">{{ evenement.nbParticipantsMax - nbParticipants.length }}</span>
             <span>Places restantes</span>
           </span>
         <span class="chiffre-cle">
-            <span class="chiffre">27</span>
+            <span class="chiffre">{{ nbParticipants.length }}</span>
             <span>Candidats inscrits</span>
           </span>
       </div>

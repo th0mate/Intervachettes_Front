@@ -17,6 +17,7 @@ export interface Evenement {
   dateDebutEvenement: string;
   dateFinEvenement: string;
   adresse: string;
+  nbParticipantsMax: number;
   description: string;
   prix: number;
   organisateur: Utilisateur;
@@ -34,5 +35,4 @@ export interface Utilisateur {
 export interface Inscription {
   id: number;
   participant: Utilisateur;
-  evenements: Evenement;
 }

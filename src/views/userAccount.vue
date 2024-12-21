@@ -12,13 +12,8 @@ import {useRoute} from "vue-router";
 const route = useRoute();
 const id = route.params.id;
 
-const user = ref<Utilisateur | null>(null);
-const estUtilisateurConnecte = ref(true); //TODO changer en false et vérifier tout OK
-
-console.log(apiStore.utilisateurConnecte, id); //TODO utilisateurConnecte est null, wtf ?
-if (apiStore.utilisateurConnecte === id) {
-  estUtilisateurConnecte.value = true;
-}
+const id = ref(apiStore.utilisateurConnecte.id);
+const user:Ref<Utilisateur[]> = ref('Chargement');
 
 apiStore.getById('utilisateurs', id)
   .then(reponseJSON => {
@@ -36,34 +31,14 @@ const handleUpdate = () => {
 };
 
 const deleteUser = () => {
-  if (!estUtilisateurConnecte.value) {
-    notify({
-      type: 'error',
-      title: 'Impossible de supprimer le compte',
-      text: 'Vous ne pouvez pas supprimer un compte qui n\'est pas le votre',
-      group: 'custom-template'
-    });
-  } else {
-    const confirmation = confirm('Voulez-vous vraiment supprimer votre compte ?');
-
-    if (confirmation) {
-      apiStore.delete('utilisateurs', id)
-        .then(() => {
-          notify({
-            type: 'success',
-            title: 'Compte supprimé avec succès',
-            group: 'custom-template'
-          });
-          router.push({name: 'accueil'});
-        });
-    } else {
+  apiStore.delete('utilisateurs', id)
+    .then(() => {
       notify({
-        type: 'info',
-        title: 'Suppression du compte annulée',
-        group: 'custom-template'
+        type: 'success',
+        title: 'Utilisateur supprimé'
       });
-    }
-  }
+      router.push({name: 'accueil'});
+    });
 };
 </script>
 
