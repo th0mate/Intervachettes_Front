@@ -15,7 +15,7 @@ const id = route.params.id;
 const user = ref<Utilisateur | null>(null);
 const estUtilisateurConnecte = ref(true); //TODO changer en false et vérifier tout OK
 
-console.log(apiStore.utilisateurConnecte, id);
+console.log(apiStore.utilisateurConnecte, id); //TODO utilisateurConnecte est null, wtf ?
 if (apiStore.utilisateurConnecte === id) {
   estUtilisateurConnecte.value = true;
 }
