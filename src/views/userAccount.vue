@@ -5,22 +5,13 @@ import InformationUser from "@/components/informationUser.vue";
 import UpdateUser from "@/components/updateUser.vue";
 import type {Utilisateur} from "@/types";
 import router from "@/router";
-import {notify} from "@kyvg/vue3-notification";
+import { notify } from "@kyvg/vue3-notification";
 import EvenementsUser from "@/components/evenementsUser.vue";
-import {useRoute} from "vue-router";
 
-const route = useRoute();
-const id = route.params.id;
+const id = ref(apiStore.utilisateurConnecte.id);
+const user:Ref<Utilisateur[]> = ref('Chargement');
 
-const user = ref<Utilisateur | null>(null);
-const estUtilisateurConnecte = ref(true); //TODO changer en false et vérifier tout OK
-
-console.log(apiStore.utilisateurConnecte, id); //TODO utilisateurConnecte est null, wtf ?
-if (apiStore.utilisateurConnecte === id) {
-  estUtilisateurConnecte.value = true;
-}
-
-apiStore.getById('utilisateurs', id)
+apiStore.getById('utilisateurs', id.value)
   .then(reponseJSON => {
     user.value = reponseJSON;
   });
@@ -36,7 +27,7 @@ const handleUpdate = () => {
 };
 
 const deleteUser = () => {
-  if (!estUtilisateurConnecte.value) {
+  if (!apiStore.estConnecte) {
     notify({
       type: 'error',
       title: 'Impossible de supprimer le compte',
@@ -87,13 +78,14 @@ const deleteUser = () => {
           <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
             arrière
           </div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
+          <div v-if="apiStore.estConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le compte<i
+          <div v-if="apiStore.estConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
+            compte<i
+              class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="apiStore.estConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
-            class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
+          <div v-if="apiStore.estConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
             class="fi fi-rr-arrow-right"></i></div>
         </div>
       </div>
