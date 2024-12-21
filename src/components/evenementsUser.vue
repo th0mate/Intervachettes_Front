@@ -11,21 +11,13 @@ const organisations: Ref<Evenement[]> = ref([]);
 
 function chargerEvenements() {
   apiStore.getRessourceConnected('utilisateurs/' + props.utilisateur.id + '/inscriptions')
-    .then(reponseJSON => {
-      inscriptions.value = reponseJSON['member'];
-    });
-  console.log("inscription");
-  console.log(inscriptions);
+      .then(reponseJSON => {
+        inscriptions.value = reponseJSON['member'];
+      });
   apiStore.getRessourceConnected('utilisateurs/' + props.utilisateur.id + '/intervachettesorganises')
-    .then(reponseJSON => {
-      organisations.value = reponseJSON['member'];
-    });
-  console.log("organisation");
-  console.log(organisations);
-}
-
-function redirigerVersSingleEvenement(idEvenement) {
-  router.push({name: 'singleEvenement', params: {id: idEvenement}});
+      .then(reponseJSON => {
+        organisations.value = reponseJSON['member'];
+      });
 }
 
 chargerEvenements();
@@ -41,8 +33,7 @@ chargerEvenements();
             <h1 class="grand-titre"><span class="color-blue">Intervachettes</span>
               {{ inscription.evenements.adresse.split(' ').pop() }}</h1>
           </div>
-          <div @click="redirigerVersSingleEvenement(inscription.evenements.id)" class="bouton icon-animation">En savoir
-            plus<i class="fi fi-rr-arrow-right"></i></div>
+          <div @click="router.push({name: 'singleEvenement', params: {id: inscription.evenements.id}})" class="bouton icon-animation">Voir plus<i class="fi fi-rr-arrow-right"></i></div>
         </div>
       </div>
     </div>
@@ -56,7 +47,12 @@ chargerEvenements();
     <div v-if="organisations.length > 0">
       <div class="liste-utilisateur" v-for="evenement in organisations" :key="evenement.id">
         <div class="evenement-utilisateur">
-
+          <div>
+            <img src="@/assets/img/intervachettes_icon.png" alt="intervachettes" class="icone-evenement">
+            <h1 class="grand-titre"><span class="color-blue">Intervachettes</span>
+              {{ evenement.adresse.split(' ').pop() }}</h1>
+          </div>
+          <div @click="router.push({name: 'singleEvenement', params: {id: evenement.id}})" class="bouton icon-animation">Voir plus<i class="fi fi-rr-arrow-right"></i></div>
         </div>
       </div>
     </div>

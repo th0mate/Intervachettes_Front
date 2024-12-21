@@ -8,7 +8,6 @@
 }
 
 
-
 /*
 ------------------------------------------------------------------------------------------------------------------------
 ONGLET INFOS DE COMPTE
@@ -37,7 +36,6 @@ ONGLET INFOS DE COMPTE
         }
     }
 }
-
 
 
 /*
@@ -93,6 +91,10 @@ ONGLET ÉVÉNEMENTS LIÉS AU COMPTE
         justify-content: space-between;
         align-items: center;
         padding: 10px;
+        border: 1px solid var(--gris-fonce-titres);
+        border-radius: 10px;
+        background-color: var(--gris-clair-background);
+        width: 100%;
 
         img {
             height: 50px;
@@ -106,18 +108,22 @@ ONGLET ÉVÉNEMENTS LIÉS AU COMPTE
             .grand-titre {
                 font-size: 1.3em;
                 color: var(--gris-fonce-titres);
+                width: fit-content;
+                max-width: 200px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
             }
         }
 
         .bouton {
-            font-size: 1.2em;
+            font-size: 0.9em;
+            width: fit-content;
         }
     }
 
 
 }
-
-
 
 
 /*
@@ -136,5 +142,26 @@ ERREUR
     .icone-erreur {
         font-size: 5em;
         color: var(--bleu-main);
+    }
+}
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+@media (max-width: 570px) {
+    .liste-utilisateur {
+        .evenement-utilisateur {
+            flex-direction: column;
+            gap: 15px;
+
+            div:not(.bouton) {
+                width: 100%;
+            }
+        }
     }
 }
