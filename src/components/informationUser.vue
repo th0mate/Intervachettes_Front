@@ -12,7 +12,7 @@ function redirigerPagesVertes() {
 
 <template>
   <div class="actionCompte">
-    <h1 class="grand-titre" v-if="apiStore.utilisateurConnecte.id === utilisateur.id">Mon <span class="color-blue">compte</span>
+    <h1 class="grand-titre" v-if="apiStore.utilisateurConnecte === utilisateur.id">Mon <span class="color-blue">compte</span>
     </h1>
     <h1 class="grand-titre" v-else>Profil de <span class="color-blue">{{ utilisateur.login }}</span></h1>
     <br>

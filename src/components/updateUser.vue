@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import {apiStore} from "@/util/apiStore";
-import {ref} from 'vue';
 import type {Utilisateur} from '@/types';
 import { notify } from "@kyvg/vue3-notification";
 
-const props = defineProps<{utilisateur: Utilisateur}>();
+const props = defineProps<{ utilisateur: Utilisateur }>();
 const emit = defineEmits<{ updated: () => void }>();
-const utilisateur = ref(props.utilisateur);
 
 const updateUser = () => {
-  console.log(utilisateur.value);
-  apiStore.update('utilisateurs', utilisateur.value, apiStore.utilisateurConnecte.id, true)
+  console.log(props.utilisateur);
+  apiStore.update('utilisateurs', props.utilisateur, apiStore.utilisateurConnecte, true)
     .then(() => {
       notify({
         type: 'success',

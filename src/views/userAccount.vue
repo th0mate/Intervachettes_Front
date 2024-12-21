@@ -77,7 +77,7 @@ const deleteUser = () => {
       <div class="gauche-compte">
         <div class="infos-compte">
           <i class="fi fi-rr-user"></i>
-          <div>
+          <div v-if="user">
             <h1 v-if="user.prenom">{{ user.prenom || 'N/A' }} {{ user.nom || 'N/A' }}</h1>
             <h1 v-if="!user.prenom">{{ user.login }}</h1>
             <span class="texte-gris-simple">Compte Intervachettes</span>
