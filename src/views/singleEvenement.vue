@@ -5,6 +5,7 @@ import {ref, type Ref} from "vue";
 import {apiStore} from "@/util/apiStore";
 import GoogleMaps from "@/components/GoogleMaps.vue";
 import {notify} from "@kyvg/vue3-notification";
+import router from "@/router";
 
 
 const route = useRoute()
@@ -106,7 +107,7 @@ function inscrireUtilisateur() {
     <section class="presentation-single-evenement">
       <div>
         <div class="indicator"><span></span>Événement</div>
-        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.nom }}</h1>
+        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.adresse.split(' ').pop() }}</h1>
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
@@ -171,7 +172,7 @@ function inscrireUtilisateur() {
                   evenement.organisateur.prenom
                 }} {{ evenement.organisateur.nom }}</span>
             </div>
-            <div @click="TODO" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
+            <div @click="router.push({name: 'userAccount', params: {id: evenement.organisateur.id }})" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
           </div>
         </div>
       </div>
