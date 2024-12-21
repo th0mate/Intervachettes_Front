@@ -10,13 +10,12 @@ import EvenementsUser from "@/components/evenementsUser.vue";
 import {useRoute} from "vue-router";
 
 const route = useRoute();
-const id = route.params.id || apiStore.utilisateurConnecte;
-
-console.log(id);
+const id = route.params.id;
 
 const user = ref<Utilisateur | null>(null);
-const estUtilisateurConnecte = ref(false);
+const estUtilisateurConnecte = ref(true); //TODO changer en false et vérifier tout OK
 
+console.log(apiStore.utilisateurConnecte, id);
 if (apiStore.utilisateurConnecte === id) {
   estUtilisateurConnecte.value = true;
 }
@@ -90,8 +89,9 @@ const deleteUser = () => {
           </div>
           <div v-if="estUtilisateurConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le compte<i
-            class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="estUtilisateurConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
+            compte<i
+              class="fi fi-rr-arrow-right"></i></div>
           <div v-if="estUtilisateurConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
             class="fi fi-rr-arrow-right"></i></div>
           <div v-if="estUtilisateurConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
@@ -102,7 +102,8 @@ const deleteUser = () => {
       <div class="droite-compte">
 
         <InformationUser class="ongletCompte" v-if="affichageAction === 'profil'" :utilisateur="user"/>
-        <UpdateUser class="ongletCompte" v-if="affichageAction === 'editer'" :utilisateur="user" @updated="handleUpdate"/>
+        <UpdateUser class="ongletCompte" v-if="affichageAction === 'editer'" :utilisateur="user"
+                    @updated="handleUpdate"/>
         <EvenementsUser class="ongletCompte" v-if="affichageAction === 'events'" :utilisateur="user"/>
       </div>
     </div>

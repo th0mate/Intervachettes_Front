@@ -24,7 +24,7 @@ const router = createRouter({
       component: () => import('@/views/inscription.vue')
     },
     {
-      path: '/userAccount',
+      path: '/userAccount/:id',
       name: 'userAccount',
       component: () => import('@/views/userAccount.vue')
     },
@@ -39,19 +39,9 @@ const router = createRouter({
       component: () => import('@/views/singleEvenement.vue')
     },
     {
-      path: '/utilisateur/:id',
-      name: 'compte',
-      component: () => import('@/views/compte.vue')
-    },
-    {
       path: '/evenements/creation',
       name: 'creationEvenement',
       component: () => import('@/views/creationEvenement.vue')
-    },
-    {
-      path: '/utilisateurs/:id/inscriptions',
-      name: 'evenementsUtilisateurs',
-      component: () => import('@/views/evenementsUtilisateurs.vue')
     },
     {
       path: '/:pathMatch(.*)*',
