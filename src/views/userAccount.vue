@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import {apiStore} from "@/util/apiStore";
-import {ref} from "vue";
+import { apiStore } from "@/util/apiStore";
+import {type Ref, ref} from "vue";
 import InformationUser from "@/components/informationUser.vue";
 import UpdateUser from "@/components/updateUser.vue";
 import type {Utilisateur} from "@/types";
 import router from "@/router";
-import {notify} from "@kyvg/vue3-notification";
+import { notify } from "@kyvg/vue3-notification";
 import EvenementsUser from "@/components/evenementsUser.vue";
-import {useRoute} from "vue-router";
-
-const route = useRoute();
-const id = route.params.id;
 
 const id = ref(apiStore.utilisateurConnecte.id);
 const user:Ref<Utilisateur[]> = ref('Chargement');
 
-apiStore.getById('utilisateurs', id)
+apiStore.getById('utilisateurs', id.value)
   .then(reponseJSON => {
     user.value = reponseJSON;
   });
@@ -31,7 +27,7 @@ const handleUpdate = () => {
 };
 
 const deleteUser = () => {
-  apiStore.delete('utilisateurs', id)
+  apiStore.delete('utilisateurs', id.value)
     .then(() => {
       notify({
         type: 'success',
