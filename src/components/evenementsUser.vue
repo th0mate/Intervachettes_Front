@@ -9,12 +9,16 @@ defineProps<{ utilisateur: Utilisateur }>();
 const inscriptions: Ref<Inscription[]> = ref([]);
 const organisations: Ref<Evenement[]> = ref([]);
 
+console.log(utilisateur);
 function chargerEvenements() {
-    apiStore.getRessourceConnected('utilisateurs/' + utilisateur.id + '/inscriptions')
-      .then(reponseJSON => {
-        inscriptions.value = reponseJSON['member'];
-      });
-
+  apiStore.getRessourceConnected('utilisateurs/' + utilisateur.id + '/inscriptions')
+    .then(reponseJSON => {
+      inscriptions.value = reponseJSON['member'];
+    });
+  apiStore.getRessourceConnected('utilisateurs/' + utilisateur.id + '/intervachettesorganises')
+    .then(reponseJSON => {
+      organisations.value = reponseJSON['member'];
+    });
 }
 
 function redirigerVersSingleEvenement(idEvenement) {
@@ -31,9 +35,11 @@ chargerEvenements();
       <div class="evenement-utilisateur">
         <div>
           <img src="@/assets/img/intervachettes_icon.png" alt="intervachettes" class="icone-evenement">
-          <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ inscription.evenements.adresse.split(' ').pop() }}</h1>
+          <h1 class="grand-titre"><span class="color-blue">Intervachettes</span>
+            {{ inscription.evenements.adresse.split(' ').pop() }}</h1>
         </div>
-        <div @click="redirigerVersSingleEvenement(inscription.evenements.id)" class="bouton icon-animation">En savoir plus<i class="fi fi-rr-arrow-right"></i></div>
+        <div @click="redirigerVersSingleEvenement(inscription.evenements.id)" class="bouton icon-animation">En savoir
+          plus<i class="fi fi-rr-arrow-right"></i></div>
       </div>
     </div>
     <div class="erreur" v-else>
