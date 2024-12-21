@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { apiStore } from "@/util/apiStore";
-import { ref } from "vue";
+import {type Ref, ref} from "vue";
 import InformationUser from "@/components/informationUser.vue";
 import UpdateUser from "@/components/updateUser.vue";
 import type {Utilisateur} from "@/types";
 import router from "@/router";
 import { notify } from "@kyvg/vue3-notification";
 
-const id = ref(apiStore.utilisateurConnecte);
+const id = ref(apiStore.utilisateurConnecte.id);
 const user:Ref<Utilisateur[]> = ref('Chargement');
 
 apiStore.getById('utilisateurs', id.value)
