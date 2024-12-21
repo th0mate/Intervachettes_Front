@@ -10,12 +10,11 @@ const inscriptions: Ref<Inscription[]> = ref([]);
 const organisations: Ref<Evenement[]> = ref([]);
 
 function chargerEvenements() {
-  if (apiStore.estConnecte) {
-    apiStore.getRessourceConnected('utilisateurs/' + apiStore.utilisateurConnecte.id + '/inscriptions')
+    apiStore.getRessourceConnected('utilisateurs/' + utilisateur.id + '/inscriptions')
       .then(reponseJSON => {
         inscriptions.value = reponseJSON['member'];
       });
-  }
+
 }
 
 function redirigerVersSingleEvenement(idEvenement) {
