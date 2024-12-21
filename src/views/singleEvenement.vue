@@ -1,24 +1,69 @@
 <script setup lang="ts">
 import {useRoute} from 'vue-router'
 import type {Evenement} from "@/types";
-import {onMounted, ref, type Ref} from "vue";
+import {ref, type Ref} from "vue";
+import {apiStore} from "@/util/apiStore";
 import GoogleMaps from "@/components/GoogleMaps.vue";
+import {notify} from "@kyvg/vue3-notification";
 
 
 const route = useRoute()
 const id = route.params.id
 
-//TODO en attendant le lien avec l'API
-const evenement: Ref<Evenement> = ref(
-  {
-    id: 1,
-    nom: "Montpellier",
-    dateDebut: "24/12/2024",
-    dateFin: "30/12/2024",
-    lieu: "99 avenue d'Occitanie, 34000 Montpellier",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus et lectus vitae facilisis. Pellentesque a nulla hendrerit, maximus nisi eu, vehicula tellus. Duis interdum purus elementum tincidunt aliquam. Donec ipsum odio, tincidunt eget ipsum sit amet, pharetra tristique tortor. Suspendisse vestibulum ullamcorper nunc, sed sodales arcu feugiat non. Maecenas ut nunc in felis euismod tincidunt et in tellus. Sed magna augue, viverra vitae neque ultricies, fermentum ullamcorper odio. Quisque elementum lacus eu urna convallis dictum. Fusce eu mattis sapien. Cras semper accumsan sapien in vestibulum. Nam congue odio quis nibh tincidunt, ac facilisis lectus cursus. Proin pellentesque neque vel malesuada lacinia.",
-    prix: 0,
+const nbParticipants:Ref<Inscription[]> = ref([]);
+
+apiStore.getAll(`inter_vachettes/${id}/inscriptions`)
+  .then(reponseJSON => {
+    nbParticipants.value = reponseJSON.member;
   });
+
+const evenement:Ref<Evenement[]> = ref('Chargement');
+apiStore.getById('inter_vachettes', id)
+  .then(reponseJSON => {
+    evenement.value = reponseJSON;
+  });
+
+function inscrireUtilisateur() {
+  if (apiStore.estConnecte) {
+    const data = {
+      participant: `/InterVachettesAPI/public/api/utilisateurs/${apiStore.utilisateurConnecte}`,
+      evenements: `/InterVachettesAPI/public/api/inter_vachettes/${id}`
+    };
+    apiStore.createRessource("inscriptions", data)
+      .then(response => {
+        if (response.success) {
+          notify({
+            type: 'success',
+            title: 'Inscription réussie',
+            text: 'Vous êtes inscrit à l\'événement.',
+            group: 'custom-template'
+          });
+        } else {
+          notify({
+            type: 'warn',
+            title: 'Inscription échouée',
+            text: response.error || 'Une erreur est survenue.',
+            group: 'custom-template'
+          });
+        }
+      })
+      .catch(error => {
+        notify({
+          type: 'error',
+          title: 'Erreur',
+          text: `Une erreur est survenue : ${error.message || 'Action impossible'}`,
+          group: 'custom-template'
+        });
+      });
+  } else {
+    notify({
+      type: 'warn',
+      title: 'Utilisateur non connecté',
+      text: 'Veuillez vous connecter pour vous inscrire à un événement.',
+      group: 'custom-template'
+    });
+  }
+}
 
 </script>
 
@@ -29,12 +74,12 @@ const evenement: Ref<Evenement> = ref(
         <div class="indicator"><span></span>Événement</div>
         <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.nom }}</h1>
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
-        <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.lieu }}</span>
+        <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
         <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
         </div>
       </div>
-      <GoogleMaps id="map" :adresses=" [evenement.lieu] " :id-div="'map'"/>
+      <GoogleMaps id="map" :adresses=" [evenement.adresse] " :id-div="'map'"/>
     </section>
 
 
@@ -60,19 +105,19 @@ const evenement: Ref<Evenement> = ref(
 
         <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">10</span>
+            <span class="chiffre">{{ evenement.nbParticipantsMax}}</span>
             <span>Places restantes</span>
           </span>
           <span class="chiffre-cle">
-            <span class="chiffre">27</span>
+            <span class="chiffre">{{ evenement.nbParticipantsMax - nbParticipants.length}}</span>
             <span>Candidats inscrits</span>
           </span>
         </div>
 
         <span class="texte-gris-simple"><i
-          class="fi fi-rr-marker color-blue"></i> Du {{ evenement.dateDebut }} au {{ evenement.dateFin }}</span>
-        <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> {{ evenement.lieu }}</span>
-        <div @click="TODO" class="bouton icon-animation">Inscription à l'événement<i class="fi fi-rr-arrow-right"></i>
+          class="fi fi-rr-marker color-blue"></i> Du {{ new Date(evenement.dateDebutEvenement).toLocaleString("fr") }} au {{ new Date(evenement.dateFinEvenement).toLocaleString("fr") }}</span>
+        <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> {{ evenement.adresse }}</span>
+        <div @click="inscrireUtilisateur" class="bouton icon-animation">Inscription à l'événement<i class="fi fi-rr-arrow-right"></i>
         </div>
       </div>
 
@@ -81,9 +126,9 @@ const evenement: Ref<Evenement> = ref(
         <div class="infos">
           <h1>Organisé par :</h1>
           <div class="infos-organisateur">
-            <div>
+            <div v-if="evenement.organisateur">
               <i class="fi fi-rr-user"></i>
-              <span class="texte-gris-simple">Jérôme Lecompte</span>
+              <span class="texte-gris-simple">{{ evenement.organisateur.prenom }} {{evenement.organisateur.nom}}</span>
             </div>
             <div @click="TODO" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
           </div>

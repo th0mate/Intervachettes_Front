@@ -58,7 +58,7 @@ export const apiStore = reactive ({
 
 
     async createRessource(ressource: string, data: any, refreshAllowed = true): Promise<{ success: boolean, error?: string }> {
-      console.log("Données envoyées createRessource:", JSON.stringify(data));
+      //console.log("Données envoyées createRessource:", JSON.stringify(data));
       const response = await fetch(this.apiUrl + ressource, {
         method: "POST",
         headers: {
