@@ -27,7 +27,6 @@ export const apiStore = reactive ({
   },
 
   login(login: string, password: string): Promise<{ success: boolean, error?: string }> {
-    //console.log("Données envoyées LOGIN:" + login + " || " + password);
     return fetch(this.apiUrl + "auth", {
       method: "POST",
       headers: {
@@ -47,7 +46,6 @@ export const apiStore = reactive ({
             .then(reponseJSON => {
               this.utilisateurConnecte = reponseJSON;
               this.estConnecte = true;
-              //console.log('Aprees connexion', this.estConnecte);
               return {success: true};
             })
         }
@@ -58,7 +56,6 @@ export const apiStore = reactive ({
 
 
     async createRessource(ressource: string, data: any, refreshAllowed = true): Promise<{ success: boolean, error?: string }> {
-      //console.log("Données envoyées createRessource:", JSON.stringify(data));
       const response = await fetch(this.apiUrl + ressource, {
         method: "POST",
         headers: {
@@ -92,7 +89,6 @@ export const apiStore = reactive ({
       credentials: 'include'
     })
       .then(reponsehttp => {
-        console.log(reponsehttp);
         if (reponsehttp.ok) {
           this.utilisateurConnecte = null;
           this.estConnecte = false;

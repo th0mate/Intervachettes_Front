@@ -15,7 +15,6 @@ const user: Ref<Utilisateur[]> = ref('Chargement');
 
 const estUtilisateurConnecte = ref(false);
 
-console.log(id, apiStore.utilisateurConnecte.id);
 if (apiStore.estConnecte && apiStore.utilisateurConnecte.id === parseInt(id)) {
   estUtilisateurConnecte.value = true;
 }

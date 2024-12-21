@@ -33,29 +33,14 @@ function creerCompte(): void {
     return;
   }
 
-  // Appel de la fonction createRessource
   apiStore.createRessource("utilisateurs", { login: login.value, plainPassword: password.value, adresseMail: email.value, biographie: bibliographie.value }, false)
     .then(() => {
-      // Si la création réussit, on appelle la fonction login
-      return apiStore.login(login.value, password.value);
-    })
-    .then(reponseJSON => {
-      if (reponseJSON['success']) {
-        notify({
-          type: 'success',
-          title: 'Connexion réussie',
-          group: 'custom-template'
-        });
-        router.push({ name: 'accueil' });
-      } else {
-        console.log(reponseJSON);
-        notify({
-          type: 'warn',
-          title: 'Connexion impossible',
-          text: 'Mot de passe ou identifiant incorrect',
-          group: 'custom-template'
-        });
-      }
+      notify({
+        type: 'success',
+        title: 'Compte créé avec succès',
+        group: 'custom-template'
+      });
+      router.push({ name: 'accueil' });
     })
     .catch(error => {
       notify({
