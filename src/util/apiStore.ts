@@ -45,7 +45,7 @@ export const apiStore = reactive ({
         } else {
           return reponsehttp.json()
             .then(reponseJSON => {
-              this.utilisateurConnecte = reponseJSON.id;
+              this.utilisateurConnecte = reponseJSON;
               this.estConnecte = true;
               //console.log('Aprees connexion', this.estConnecte);
               return {success: true};
@@ -124,7 +124,7 @@ export const apiStore = reactive ({
         } else {
           return reponsehttp.json()
             .then(reponseJSON => {
-              this.utilisateurConnecte = reponseJSON.id;
+              this.utilisateurConnecte = reponseJSON;
               this.estConnecte = true;
               return {success: true};
             })

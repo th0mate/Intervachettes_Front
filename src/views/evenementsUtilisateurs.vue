@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import {ref, type Ref} from "vue";
+import { useRoute } from 'vue-router'
 import WrapTinyEvenement from "@/components/WrapTinyEvenement.vue";
 import type {Inscription} from "@/types";
 import '@/assets/styles/styleListeEvenements.css';
 import {apiStore} from "@/util/apiStore";
 
 
-
+const route = useRoute();
+const id = route.params.id;
 
 const inscriptions: Ref<Inscription[]> = ref([]);
 
@@ -14,7 +16,7 @@ function chargerEvenements()
 {
   if(apiStore.estConnecte)
   {
-    apiStore.getRessourceConnected('utilisateurs/' + apiStore.utilisateurConnecte.id + '/inscriptions')
+    apiStore.getRessourceConnected('utilisateurs/' + id + '/inscriptions')
       .then(reponseJSON => {
         inscriptions.value = reponseJSON['member'];
       });
