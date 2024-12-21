@@ -12,7 +12,7 @@ STYLE GENERAL
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -20,8 +20,7 @@ STYLE GENERAL
 
     .wrap-connexion-inscription {
         width: 90%;
-        height: 550px;
-        max-width: 1000px;
+        min-height: 450px;
         border-radius: 20px;
         overflow: hidden;
         display: flex;
@@ -152,7 +151,7 @@ RESPONSIVE
             flex-direction: column;
             justify-content: center !important;
             height: auto;
-            min-height: 500px !important;
+            min-height: 450px !important;
             padding: 0;
             position: relative;
 
