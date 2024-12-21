@@ -27,14 +27,34 @@ const handleUpdate = () => {
 };
 
 const deleteUser = () => {
-  apiStore.delete('utilisateurs', id.value)
-    .then(() => {
-      notify({
-        type: 'success',
-        title: 'Utilisateur supprimé'
-      });
-      router.push({name: 'accueil'});
+  if (!apiStore.estConnecte) {
+    notify({
+      type: 'error',
+      title: 'Impossible de supprimer le compte',
+      text: 'Vous ne pouvez pas supprimer un compte qui n\'est pas le votre',
+      group: 'custom-template'
     });
+  } else {
+    const confirmation = confirm('Voulez-vous vraiment supprimer votre compte ?');
+
+    if (confirmation) {
+      apiStore.delete('utilisateurs', id)
+        .then(() => {
+          notify({
+            type: 'success',
+            title: 'Compte supprimé avec succès',
+            group: 'custom-template'
+          });
+          router.push({name: 'accueil'});
+        });
+    } else {
+      notify({
+        type: 'info',
+        title: 'Suppression du compte annulée',
+        group: 'custom-template'
+      });
+    }
+  }
 };
 </script>
 
@@ -58,14 +78,14 @@ const deleteUser = () => {
           <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
             arrière
           </div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
+          <div v-if="apiStore.estConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
+          <div v-if="apiStore.estConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
             compte<i
               class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
+          <div v-if="apiStore.estConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
+          <div v-if="apiStore.estConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
             class="fi fi-rr-arrow-right"></i></div>
         </div>
       </div>
