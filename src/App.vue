@@ -7,12 +7,16 @@ import {Notifications, notify} from "@kyvg/vue3-notification";
 
 
 function ouvrirMenu() {
-  document.querySelector('.menu-responsive').style.display = 'flex';
-}
+  const menu = document.querySelector('.menu-responsive');
+  if (menu) {
+    (menu as HTMLElement).style.display = 'flex';
+  }}
 
 function fermerMenu() {
-  document.querySelector('.menu-responsive').style.display = 'none';
-}
+  const menu = document.querySelector('.menu-responsive');
+  if (menu) {
+    (menu as HTMLElement).style.display = 'none';
+  }}
 
 const logout = () => {
   notify({
@@ -42,7 +46,7 @@ const getImageSrc = (type: string) => {
       <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
       <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
       <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'connexion'})" class="bouton border-bleu"><i class="fi fi-tr-circle-user"></i>Connexion</div>
-      <div v-if="apiStore.estConnecte" @click="$router.push({name: 'userAccount', params: { id: apiStore.utilisateurConnecte.id }})" class="bouton fond-bleu"><i class="fi fi-tr-circle-user"></i>Mon Compte</div>
+      <div v-if="apiStore.estConnecte" @click="$router.push({name: 'userAccount', params: { id: apiStore.utilisateurConnecte?.id }})" class="bouton fond-bleu"><i class="fi fi-tr-circle-user"></i>Mon Compte</div>
       <div v-if="apiStore.estConnecte" @click="logout" class="bouton border-bleu"><i class="fi fi-rr-sign-out-alt"></i>Déconnexion</div>
       <div v-if="!apiStore.estConnecte" @click="$router.push({name: 'inscription'})" class="bouton fond-bleu"><i class="fi fi-tr-add"></i>Inscription</div>
     </div>
@@ -62,7 +66,7 @@ const getImageSrc = (type: string) => {
     <RouterLink to="/accueil" class="nav-link" active-class="active-link">ACCUEIL</RouterLink>
     <RouterLink to="/evenements" class="nav-link" active-class="active-link">ÉVÉNEMENTS</RouterLink>
     <RouterLink v-if="!apiStore.estConnecte" to="/connexion" class="nav-link" active-class="active-link">CONNEXION</RouterLink>
-    <RouterLink v-if="apiStore.estConnecte" :to="{ name: 'userAccount', params: { id: apiStore.utilisateurConnecte.id }}" class="nav-link" active-class="active-link">MON COMPTE</RouterLink>
+    <RouterLink v-if="apiStore.estConnecte" :to="{ name: 'userAccount', params: { id: apiStore.utilisateurConnecte?.id }}" class="nav-link" active-class="active-link">MON COMPTE</RouterLink>
     <span v-if="apiStore.estConnecte" class="nav-link" @click="logout">DÉCONNEXION</span>
     <RouterLink v-if="!apiStore.estConnecte" to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
   </div>

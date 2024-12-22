@@ -7,8 +7,8 @@ import {notify} from "@kyvg/vue3-notification";
 
 
 const evenements: Ref<Evenement[]> = ref([]);
-let tableauAdresses: Ref<string[]> = ref([]);
-let estCharge = ref(false);
+const tableauAdresses: Ref<string[]> = ref([]);
+const estCharge = ref(false);
 
 function chargerEvenements() {
   apiStore.getAll('inter_vachettes')
