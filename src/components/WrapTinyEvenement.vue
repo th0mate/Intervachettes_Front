@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Evenement} from "@/types";
+import type {ApiResponse, Evenement, Inscription} from "@/types";
 import router from "@/router";
 import GoogleMaps from "@/components/GoogleMaps.vue";
 import {ref, type Ref} from "vue";
@@ -17,8 +17,13 @@ const adresseEnTableau = [props.evenement.adresse];
 const nbParticipants:Ref<Inscription[]> = ref([]);
 
 apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
-  .then(reponseJSON => {
-    nbParticipants.value = reponseJSON.member;
+  .then((reponseJSON) => {
+    const response = reponseJSON as ApiResponse;
+    if (Array.isArray(response.member)) {
+      nbParticipants.value = response.member as Inscription[];
+    } else {
+      console.error("Unexpected response format", response);
+    }
   });
 
 

@@ -74,8 +74,7 @@ const getImageSrc = (type: string) => {
   <notifications group="custom-template" position="bottom right" :duration="5000" v-if="loaded">
     <template #body="props">
       <div :class="['my-notification', props.item.type]">
-        <img :src="getImageSrc(props.item.type)" alt="logo" class="logo"/>
-        <div>
+        <img :src="getImageSrc(props.item.type || 'default')" alt="logo" class="logo"/>        <div>
           <p>{{ props.item.title }}</p>
           <span>{{ props.item.text }}</span>
         </div>
