@@ -38,8 +38,6 @@ function chargerEvenements() {
 
 chargerEvenements();
 
-
-
 function hasDateConflict(newEvent) {
   return inscriptionsUserConnect.value.some(inscription => {
     const event = inscription.evenements;
@@ -128,16 +126,15 @@ function inscrireUtilisateur() {
     <section class="presentation-single-evenement">
       <div>
         <div class="indicator"><span></span>Événement</div>
-        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.adresse.split(' ').pop() }}</h1>
+        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.adresse ? evenement.adresse.split(' ').pop() : '' }}</h1>
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
         <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
         </div>
       </div>
-      <GoogleMaps id="map" :adresses=" [evenement.adresse] " :id-div="'map'"/>
+      <GoogleMaps v-if="evenement.adresse" id="map" :adresses="[evenement.adresse]" :id-div="'map'"/>
     </section>
-
 
     <section class="presentation-description">
       <div class="indicator"><span></span>Description</div>
@@ -193,7 +190,7 @@ function inscrireUtilisateur() {
                   evenement.organisateur.prenom
                 }} {{ evenement.organisateur.nom }}</span>
             </div>
-            <div @click="router.push({name: 'userAccount', params: {id: evenement.organisateur.id }})" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
+            <div @click="apiStore.estConnecte ? router.push({name: 'userAccount', params: {id: evenement.organisateur.id }}) : router.push({name: 'connexion'})" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
           </div>
         </div>
       </div>
