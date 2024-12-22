@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useRoute} from 'vue-router'
 import type {Evenement, Inscription} from "@/types";
-import {ref, type Ref} from "vue";
+import {ref, computed, type Ref} from "vue";
 import {apiStore} from "@/util/apiStore";
 import GoogleMaps from "@/components/GoogleMaps.vue";
 import {notify} from "@kyvg/vue3-notification";
@@ -18,7 +18,7 @@ const evenement: Ref<Evenement> = ref({});
 apiStore.getById('inter_vachettes', id)
   .then(reponseJSON => {
     evenement.value = reponseJSON;
-    if(evenement.value.estPublic) {
+    if (evenement.value.estPublic) {
       apiStore.getRessourceConnected(`inter_vachettes/${id}/inscriptions`)
         .then(reponseJSON => {
           inscriptions.value = reponseJSON.member;
@@ -49,22 +49,24 @@ function hasDateConflict(newEvent) {
   });
 }
 
-function estDejaInscrit(idEvenement: number): boolean {
+const hideButton = computed((): boolean => {
   if (!apiStore.estConnecte) {
-    return false;
+    return true;
   }
-  if(!evenement.value.estPublic) {
-    return false;
+  if (!evenement.value.estPublic) {
+    return true;
   }
-
   if (evenement.value.organisateur && evenement.value.organisateur.id === apiStore.utilisateurConnecte.id) {
-    return false;
+    return true;
   }
+  return inscriptions.value.length >= evenement.value.nbParticipantsMax;
+});
 
+const estDejaInscrit = computed((): boolean => {
   return inscriptionsUserConnect.value.some(inscription => {
-    return inscription.evenements.id === idEvenement;
+    return inscription.evenements.id === evenement.value.id;
   });
-}
+});
 
 function inscrireUtilisateur() {
   if (!apiStore.estConnecte) {
@@ -118,6 +120,35 @@ function inscrireUtilisateur() {
   }
 }
 
+
+function findMatchingEvent() {
+  const eventId = parseInt(id, 10); // Convert the id from the route params to a number
+  return inscriptionsUserConnect.value.find(inscription => inscription.evenements.id === eventId);
+}
+
+const deleteUser = () => {
+  const idInscription = findMatchingEvent();
+    const confirmation = confirm('Voulez-vous vraiment vous désinscrire ?');
+    if (confirmation) {
+      apiStore.deleteInscription('inscriptions', idInscription.id)
+        .then(() => {
+          notify({
+            type: 'success',
+            title: 'Désinscription réalisé avec succès',
+            group: 'custom-template'
+          });
+          router.push({name: 'accueil'});
+        });
+    } else {
+      notify({
+        type: 'info',
+        title: 'Désinscription annulée',
+        group: 'custom-template'
+      });
+    }
+};
+
+
 </script>
 
 <template>
@@ -125,11 +156,13 @@ function inscrireUtilisateur() {
     <section class="presentation-single-evenement">
       <div>
         <div class="indicator"><span></span>Événement</div>
-        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span> {{ evenement.adresse ? evenement.adresse.split(' ').pop() : '' }}</h1>
+        <h1 class="grand-titre"><span class="color-blue">Intervachettes</span>
+          {{ evenement.adresse ? evenement.adresse.split(' ').pop() : '' }}</h1>
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
-        <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
+        <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
+          arrière
         </div>
       </div>
       <GoogleMaps v-if="evenement.adresse" id="map" :adresses="[evenement.adresse]" :id-div="'map'"/>
@@ -173,8 +206,13 @@ function inscrireUtilisateur() {
         <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> {{
             evenement.adresse
           }}</span>
-        <div v-if="estDejaInscrit(evenement.id)" @click="inscrireUtilisateur" class="bouton icon-animation">Inscription à l'événement<i
-          class="fi fi-rr-arrow-right"></i>
+        <div v-if="!hideButton">
+          <div v-if="!estDejaInscrit" @click="inscrireUtilisateur" class="bouton icon-animation">
+            Inscription à l'événement<i class="fi fi-rr-arrow-right"></i>
+          </div>
+          <div v-else @click="deleteUser" class="bouton icon-animation">
+            Quitter l'événement<i class="fi fi-rr-arrow-right"></i>
+          </div>
         </div>
       </div>
 
@@ -189,7 +227,9 @@ function inscrireUtilisateur() {
                   evenement.organisateur.prenom
                 }} {{ evenement.organisateur.nom }}</span>
             </div>
-            <div @click="apiStore.estConnecte ? router.push({name: 'userAccount', params: {id: evenement.organisateur.id }}) : router.push({name: 'connexion'})" class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
+            <div
+              @click="apiStore.estConnecte ? router.push({name: 'userAccount', params: {id: evenement.organisateur.id }}) : router.push({name: 'connexion'})"
+              class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
           </div>
         </div>
       </div>

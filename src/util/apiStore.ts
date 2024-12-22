@@ -158,6 +158,27 @@ export const apiStore = reactive ({
     });
   },
 
+  deleteInscription(ressource: string, id: number): Promise<ApiResponse> {
+    return fetch(this.apiUrl + ressource + "/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }).then((reponsehttp) => {
+      if (reponsehttp.ok) {
+        return reponsehttp.text().then((text) => {
+          return text ? { success: true, data: JSON.parse(text) } : { success: true };
+        });
+      } else {
+        return reponsehttp.text().then((text) => {
+          const reponseJSON = text ? JSON.parse(text) : {};
+          return { success: false, error: reponseJSON.message || "Unknown error" };
+        });
+      }
+    });
+  },
+
   getFromPagesVertes(ressource: string): Promise<unknown> {
     return fetch(this.pagesVertesUrl + ressource)
       .then(reponsehttp => reponsehttp.json())
