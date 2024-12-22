@@ -29,7 +29,7 @@ apiStore.getById('utilisateurs', id)
   });
 
 const deleteUser = () => {
-  if (!apiStore.utilisateurConnecte.id === parseInt(id)) {
+  if (!apiStore.utilisateurConnecte || apiStore.utilisateurConnecte.id !== parseInt(id)) {
     notify({
       type: 'error',
       title: 'Impossible de supprimer le compte',
@@ -86,15 +86,10 @@ loaded.value = true;
           <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
             arrière
           </div>
-          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
-            class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
-            compte<i
-              class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
-            class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
-            class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="apiStore.utilisateurConnecte && apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="apiStore.utilisateurConnecte && apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le compte<i class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="apiStore.utilisateurConnecte && apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i class="fi fi-rr-arrow-right"></i></div>
+          <div v-if="apiStore.utilisateurConnecte && apiStore.utilisateurConnecte.id === parseInt(id)" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i class="fi fi-rr-arrow-right"></i></div>
         </div>
       </div>
 

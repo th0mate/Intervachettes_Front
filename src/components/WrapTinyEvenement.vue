@@ -14,18 +14,12 @@ function redirigerVersSingleEvenement() {
 const titre = props.evenement.adresse.split(' ').pop();
 const adresseEnTableau = [props.evenement.adresse];
 
-const nbParticipants:Ref<Inscription[]> = ref([]);
+const inscriptions: Ref<Inscription[]> = ref([]);
 
 apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
-  .then((reponseJSON) => {
-    const response = reponseJSON as ApiResponse;
-    if (Array.isArray(response.member)) {
-      nbParticipants.value = response.member as Inscription[];
-    } else {
-      console.error("Unexpected response format", response);
-    }
-  });
-
+  .then(reponseJSON => {
+    inscriptions.value = reponseJSON.member;
+  })
 
 </script>
 
@@ -41,11 +35,11 @@ apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
       <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">{{ evenement.nbParticipantsMax - nbParticipants.length }}</span>
-            <span>Places restantes</span>
+            <span class="chiffre">{{ inscriptions.length === null ? evenement.nbParticipantsMax : evenement.nbParticipantsMax - inscriptions.length }}</span>
+            <span>{{ inscriptions.length === 0 ? 'Places Totales' : 'Places restantes' }}</span>
           </span>
         <span class="chiffre-cle">
-            <span class="chiffre">{{ nbParticipants.length }}</span>
+            <span class="chiffre">{{ inscriptions.length || "?" }}</span>
             <span>Candidats inscrits</span>
           </span>
       </div>

@@ -10,17 +10,8 @@ const emit = defineEmits(['updated']);
 const localUtilisateur = ref({ ...props.utilisateur });
 
 const updateUser = () => {
-  if (typeof apiStore.utilisateurConnecte !== 'number') {
-    notify({
-      type: 'error',
-      title: 'Erreur',
-      text: 'Utilisateur non connecté ou identifiant invalide',
-      group: 'custom-template'
-    });
-    return;
-  }
-
-  apiStore.update('utilisateurs', localUtilisateur.value, apiStore.utilisateurConnecte, true)
+  console.log('updateUser');
+  apiStore.update('utilisateurs', localUtilisateur.value, apiStore.utilisateurConnecte.id, true)
     .then(() => {
       notify({
         type: 'success',

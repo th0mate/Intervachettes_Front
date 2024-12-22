@@ -20,6 +20,7 @@ export interface Evenement {
   nbParticipantsMax: number;
   description: string;
   prix: number;
+  est_public: boolean;
   organisateur: Utilisateur;
 }
 

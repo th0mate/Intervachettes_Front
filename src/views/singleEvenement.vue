@@ -14,10 +14,18 @@ const id = route.params.id
 const inscriptions: Ref<Inscription[]> = ref([]);
 const inscriptionsUserConnect: Ref<Inscription[]> = ref([]);
 
-apiStore.getRessourceConnected(`inter_vachettes/${id}/inscriptions`)
+const evenement: Ref<Evenement> = ref({});
+apiStore.getById('inter_vachettes', id)
   .then(reponseJSON => {
-    inscriptions.value = reponseJSON.member;
+    evenement.value = reponseJSON;
   });
+
+if(evenement.value.est_public) {
+  apiStore.getRessourceConnected(`inter_vachettes/${id}/inscriptions`)
+    .then(reponseJSON => {
+      inscriptions.value = reponseJSON.member;
+    });
+}
 
 function chargerEvenements() {
   if (apiStore.estConnecte) {
@@ -30,11 +38,7 @@ function chargerEvenements() {
 
 chargerEvenements();
 
-const evenement: Ref<Evenement> = ref({});
-apiStore.getById('inter_vachettes', id)
-  .then(reponseJSON => {
-    evenement.value = reponseJSON;
-  });
+
 
 function hasDateConflict(newEvent) {
   return inscriptionsUserConnect.value.some(inscription => {
@@ -140,11 +144,11 @@ function inscrireUtilisateur() {
 
         <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">{{ evenement.nbParticipantsMax }}</span>
-            <span>Places restantes</span>
+            <span class="chiffre">{{ inscriptions.length === null ? evenement.nbParticipantsMax : evenement.nbParticipantsMax - inscriptions.length }}</span>
+            <span>{{ inscriptions.length === 0 ? 'Places Totales' : 'Places restantes' }}</span>
           </span>
           <span class="chiffre-cle">
-            <span class="chiffre">{{ inscriptions.length }}</span>
+            <span class="chiffre">{{ inscriptions.length || "?" }}</span>
             <span>Candidats inscrits</span>
           </span>
         </div>

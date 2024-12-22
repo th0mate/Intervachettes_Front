@@ -4,6 +4,7 @@ import {apiStore} from "@/util/apiStore";
 import {ref} from 'vue';
 import '@/assets/js/gestionNavbar.js';
 import {Notifications, notify} from "@kyvg/vue3-notification";
+import router from "@/router";
 
 
 function ouvrirMenu() {
@@ -25,6 +26,7 @@ const logout = () => {
     group: 'custom-template'
   });
   apiStore.logout();
+  router.push({name: 'accueil'});
 }
 const loaded = ref(false);
 
