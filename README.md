@@ -62,10 +62,10 @@ Le premier projet (PagesVertes) s'est fait avant l'arrivée de Sascha Levy dans 
 ### InterVachettesFront
 - Lorick
     - Initialisation de l'apiStore
-    - Connexion et inscription des utilisateurs
+    - Connexion des utilisateurs
     - Gestion et suppression de comptes
     - Modification de l'API Symfony
-    - Lien avec l'API pour les singleEvenements et les tinyEvenement
+    - Lien avec l'API pour les informations de l'utilisateur, singleEvenements et les tinyEvenement
     - Possibilité pour un utilisateur de quitter un événement
     - Gestion du refresh token avec JWT
 
