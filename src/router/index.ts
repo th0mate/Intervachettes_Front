@@ -11,17 +11,17 @@ const router = createRouter({
     {
       path: '/accueil',
       name: 'accueil',
-      component: () => import('@/views/accueil.vue')
+      component: () => import('@/views/vueAccueil.vue')
     },
     {
       path: '/connexion',
       name: 'connexion',
-      component: () => import('@/views/connexion.vue')
+      component: () => import('@/views/vueConnexion.vue')
     },
     {
       path: '/inscription',
       name: 'inscription',
-      component: () => import('@/views/inscription.vue')
+      component: () => import('@/views/vueInscription.vue')
     },
     {
       path: '/userAccount/:id',
