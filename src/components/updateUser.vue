@@ -55,7 +55,7 @@ const updateUser = () => {
   <div class="erreur" v-else>
     <i class="fi fi-rr-exclamation icone-erreur"></i>
     <h1 class="color-blue">Erreur : Utilisateur non connecté.</h1>
-    <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
+    <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
       arrière
     </div>
   </div>
