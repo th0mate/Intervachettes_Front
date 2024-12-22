@@ -78,7 +78,7 @@ loaded.value = true;
         <img src="@/assets/img/pages_vertes.png" alt="pages vertes" class="icone-pages-vertes">
         <span class="texte-gris-simple">Voir sur PagesVertes</span>
       </div>
-      <div v-if="apiStore.utilisateurConnecte.id === utilisateur.id" class="pages-vertes" @click="synchroniserInfoAvecPagesVertes">
+      <div v-if="!apiStore.utilisateurConnecte || apiStore.utilisateurConnecte.id === utilisateur.id" class="pages-vertes" @click="synchroniserInfoAvecPagesVertes">
         <img src="@/assets/img/pages_vertes.png" alt="pages vertes" class="icone-pages-vertes">
         <span class="texte-gris-simple">Synchroniser infos avec PagesVertes</span>
       </div>
