@@ -9,6 +9,7 @@ export interface Utilisateur {
   code_pages_vertes : string;
   biographie : string;
   facebook : string;
+  roles: string[];
 }
 
 export interface UtilisateurPagesVertes {
