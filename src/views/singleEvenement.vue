@@ -122,7 +122,7 @@ function inscrireUtilisateur() {
 
 
 function findMatchingEvent() {
-  const eventId = parseInt(id, 10); // Convert the id from the route params to a number
+  const eventId = parseInt(id, 10);
   return inscriptionsUserConnect.value.find(inscription => inscription.evenements.id === eventId);
 }
 
@@ -228,7 +228,7 @@ const deleteUser = () => {
                 }} {{ evenement.organisateur.nom }}</span>
             </div>
             <div
-              @click="apiStore.estConnecte ? router.push({name: 'userAccount', params: {id: evenement.organisateur.id }}) : router.push({name: 'connexion'})"
+              @click="router.push({name: 'userAccount', params: {id: evenement.organisateur.id }})"
               class="bouton icon-animation">Voir le compte<i class="fi fi-rr-arrow-right"></i></div>
           </div>
         </div>

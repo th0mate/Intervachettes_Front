@@ -74,13 +74,15 @@ loaded.value = true;
     <h1 class="grand-titre" v-else>Profil de <span class="color-blue">{{ props.utilisateur.login }}</span></h1>
     <br>
     <div class="details-compte">
-      <div v-if="!apiStore.utilisateurConnecte || apiStore.utilisateurConnecte.id === props.utilisateur.id" class="pages-vertes" @click="redirigerPagesVertes">
+      <div v-if="apiStore.estConnecte && props.utilisateur.code_pages_vertes && (!apiStore.utilisateurConnecte || apiStore.utilisateurConnecte.id === props.utilisateur.id)">
+      <div class="pages-vertes" @click="redirigerPagesVertes">
         <img src="@/assets/img/pages_vertes.png" alt="pages vertes" class="icone-pages-vertes">
         <span class="texte-gris-simple">Voir sur PagesVertes</span>
       </div>
-      <div v-if="!apiStore.utilisateurConnecte || apiStore.utilisateurConnecte.id === utilisateur.id" class="pages-vertes" @click="synchroniserInfoAvecPagesVertes">
+      <div class="pages-vertes" @click="synchroniserInfoAvecPagesVertes">
         <img src="@/assets/img/pages_vertes.png" alt="pages vertes" class="icone-pages-vertes">
         <span class="texte-gris-simple">Synchroniser infos avec PagesVertes</span>
+      </div>
       </div>
       <span class="texte-gris-simple"><span class="color-blue">Login :</span> {{ props.utilisateur.login || 'N/A' }}</span>
       <span class="texte-gris-simple"><span class="color-blue">Nom :</span> {{ props.utilisateur.nom || 'N/A' }}</span>
