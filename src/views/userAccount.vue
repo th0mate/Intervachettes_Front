@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {apiStore} from "@/util/apiStore";
-import {type Ref, ref} from "vue";
+import { apiStore } from "@/util/apiStore";
+import { ref, reactive } from "vue";
 import InformationUser from "@/components/informationUser.vue";
 import UpdateUser from "@/components/updateUser.vue";
 import type {Utilisateur} from "@/types";
@@ -11,7 +11,7 @@ import {useRoute} from "vue-router";
 
 const route = useRoute();
 const id = route.params.id;
-const user: Ref<Utilisateur[]> = ref('Chargement');
+const user = reactive<Utilisateur>({});
 
 const affichageAction = ref('profil');
 
@@ -21,11 +21,15 @@ const toggleEdit = (action) => {
 
 const handleUpdate = () => {
   affichageAction.value = 'profil';
+  apiStore.getById('utilisateurs', id)
+    .then(reponseJSON => {
+      Object.assign(user, reponseJSON);
+    });
 };
 
 apiStore.getById('utilisateurs', id)
   .then(reponseJSON => {
-    user.value = reponseJSON;
+    Object.assign(user, reponseJSON);
   });
 
 const deleteUser = () => {
