@@ -57,7 +57,7 @@ function inscrireUtilisateur() {
       group: 'custom-template'
     });
   } else {
-    if (inscriptions.length >= evenement.value.nbParticipantsMax) {
+    if (inscriptions.value.length >= evenement.value.nbParticipantsMax) {
       notify({
         type: 'warning',
         title: 'Inscription échouée',
