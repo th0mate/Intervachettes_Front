@@ -9,7 +9,15 @@ const openCageApiKey = '9926c5c68d1049699aa98588422de554';
 const googleMapsApiKey = 'AIzaSyBWb0BhFaft2KGEB950XZKunK3-g0T-Uns';
 const props = defineProps<{ adresses: string[], idDiv: string }>();
 
+let compteur = 0;
 async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
+  compteur++;
+
+  if (compteur > 5) {
+    console.error('Tentatives de reconnexion épuisées');
+    return;
+  }
+
   try {
     await loadGoogleMapsScript(googleMapsApiKey);
     const map = new window.google.maps.Map(document.getElementById(idDiv), {
