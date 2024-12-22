@@ -10,8 +10,8 @@ import EvenementsUser from "@/components/evenementsUser.vue";
 import {useRoute} from "vue-router";
 
 const route = useRoute();
-const id = route.params.id;
-const user: Ref<Utilisateur[]> = ref('Chargement');
+const id = route.params.id.toString();
+const user: Ref<Utilisateur> = ref('Chargement');
 
 const affichageAction = ref('profil');
 
@@ -23,10 +23,15 @@ const handleUpdate = () => {
   affichageAction.value = 'profil';
 };
 
-apiStore.getById('utilisateurs', id)
-  .then(reponseJSON => {
-    user.value = reponseJSON;
-  });
+function getUser()
+{
+  apiStore.getById('utilisateurs', parseInt(id))
+    .then(reponseJSON => {
+      user.value = reponseJSON;
+    });
+}
+
+getUser();
 
 const deleteUser = () => {
   if (!apiStore.utilisateurConnecte.id === parseInt(id)) {
@@ -58,6 +63,8 @@ const deleteUser = () => {
     }
   }
 };
+
+
 
 const loaded = ref(false);
 
@@ -100,7 +107,7 @@ loaded.value = true;
 
       <div class="droite-compte">
 
-        <InformationUser class="ongletCompte" v-if="affichageAction === 'profil'" :utilisateur="user"/>
+        <InformationUser class="ongletCompte" v-if="affichageAction === 'profil'" :utilisateur="user" @updated="getUser"/>
         <UpdateUser class="ongletCompte" v-if="affichageAction === 'editer'" :utilisateur="user"
                     @updated="handleUpdate"/>
         <EvenementsUser class="ongletCompte" v-if="affichageAction === 'events'" :utilisateur="user"/>

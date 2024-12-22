@@ -11,6 +11,23 @@ export interface Utilisateur {
   facebook : string;
 }
 
+export interface UtilisateurPagesVertes {
+  id: number;
+  login: string;
+  roles: string[];
+  adresseEmail: string;
+  code: string;
+  estVisible: boolean;
+  prenom: string;
+  nom: string;
+  telephone: string;
+  facebook: string;
+  dateDerniereConnexion: Date;
+  dateDerniereEdition: Date;
+}
+
+
+
 export interface Evenement {
   id: number;
   nom: string;
@@ -23,14 +40,6 @@ export interface Evenement {
   organisateur: Utilisateur;
 }
 
-export interface Utilisateur {
-  id: number;
-  adresseMail: string;
-  login: string;
-  codePagesVertes: string;
-  Description: string;
-  Facebook: string;
-}
 
 export interface Inscription {
   id: number;
