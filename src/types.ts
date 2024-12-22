@@ -35,4 +35,5 @@ export interface Utilisateur {
 export interface Inscription {
   id: number;
   participant: Utilisateur;
+  evenements: Evenement;
 }

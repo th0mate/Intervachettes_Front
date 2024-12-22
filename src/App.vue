@@ -67,7 +67,7 @@ const getImageSrc = (type: string) => {
     <RouterLink v-if="!apiStore.estConnecte" to="/inscription" class="nav-link" active-class="active-link">INSCRIPTION</RouterLink>
   </div>
 
-  <notifications group="custom-template" position="bottom right" :duration="5000">
+  <notifications group="custom-template" position="bottom right" :duration="5000" v-if="loaded">
     <template #body="props">
       <div :class="['my-notification', props.item.type]">
         <img :src="getImageSrc(props.item.type)" alt="logo" class="logo"/>
@@ -79,11 +79,11 @@ const getImageSrc = (type: string) => {
     </template>
   </notifications>
 
-  <div class="contenu-intervachettes">
+  <div class="contenu-intervachettes" v-if="loaded==true">
     <RouterView class="contenu"/>
   </div>
 
-  <footer>
+  <footer v-if="loaded">
     <span>©2024 Levy Vergnes Audouy Loye</span>
     <span>Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a></span>
     <img @click="$router.push({name: 'accueil'})" src="@/assets/img/intervachettes_logo.png" alt="logo" class="logo"/>

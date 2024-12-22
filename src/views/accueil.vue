@@ -7,14 +7,14 @@ import {notify} from "@kyvg/vue3-notification";
 
 
 const evenements: Ref<Evenement[]> = ref([]);
-let tableauAdresses: string[] = ref([]);
+let tableauAdresses: Ref<string[]> = ref([]);
 let estCharge = ref(false);
 
 function chargerEvenements() {
   apiStore.getAll('inter_vachettes')
       .then(reponseJSON => {
         evenements.value = reponseJSON['member'];
-        tableauAdresses = evenements.value.map(evenement => evenement.adresse);
+        tableauAdresses.value = evenements.value.map(evenement => evenement.adresse);
         estCharge.value = true;
       });
 }

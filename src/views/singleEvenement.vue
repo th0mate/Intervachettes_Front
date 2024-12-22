@@ -14,7 +14,7 @@ const id = route.params.id
 const inscriptions: Ref<Inscription[]> = ref([]);
 const inscriptionsUserConnect: Ref<Inscription[]> = ref([]);
 
-apiStore.getAll(`inter_vachettes/${id}/inscriptions`)
+apiStore.getRessourceConnected(`inter_vachettes/${id}/inscriptions`)
   .then(reponseJSON => {
     inscriptions.value = reponseJSON.member;
   });
@@ -30,7 +30,7 @@ function chargerEvenements() {
 
 chargerEvenements();
 
-const evenement: Ref<Evenement> = ref('Chargement');
+const evenement: Ref<Evenement> = ref({});
 apiStore.getById('inter_vachettes', id)
   .then(reponseJSON => {
     evenement.value = reponseJSON;
@@ -144,7 +144,7 @@ function inscrireUtilisateur() {
             <span>Places restantes</span>
           </span>
           <span class="chiffre-cle">
-            <span class="chiffre">{{ evenement.nbParticipantsMax - inscriptions.length }}</span>
+            <span class="chiffre">{{ inscriptions.length }}</span>
             <span>Candidats inscrits</span>
           </span>
         </div>
