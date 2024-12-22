@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GoogleMaps from "@/components/GoogleMaps.vue";
-import {ref, type Ref} from "vue";
+import {computed, ref, type Ref} from "vue";
 import type {Evenement} from "@/types";
 import {apiStore} from "@/util/apiStore";
 
@@ -20,6 +20,9 @@ function chargerEvenements() {
 
 chargerEvenements();
 
+const totalPlaces = computed(() => {
+  return evenements.value.reduce((total, evenement) => total + evenement.nbParticipantsMax, 0);
+});
 </script>
 
 <template>
@@ -35,12 +38,12 @@ chargerEvenements();
 
         <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">10</span>
+            <span class="chiffre">{{ evenements.length }}</span>
             <span>Événements prévus</span>
           </span>
           <span class="chiffre-cle">
-            <span class="chiffre">27</span>
-            <span>Villes en compétition</span>
+            <span class="chiffre">{{ totalPlaces }}</span>
+            <span>Nombre de places totales</span>
           </span>
         </div>
       </div>
