@@ -37,3 +37,9 @@ export interface Inscription {
   participant: Utilisateur;
   evenements: Evenement;
 }
+
+export interface ApiResponse {
+  success: boolean;
+  error?: string;
+  [key: string]: unknown;
+}

@@ -83,7 +83,7 @@ loaded.value = true;
 
         <div class="actions-compte">
           <span class="texte-gris-simple">Actions</span>
-          <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
+          <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
             arrière
           </div>
           <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i

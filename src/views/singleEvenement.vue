@@ -111,7 +111,7 @@ function inscrireUtilisateur() {
         <span class="texte-gris-simple">Parcourez les informations d’un événement, inscrivez vous pour y participer ou y assister.</span>
         <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
         <img src="@/assets/img/deco-points.png" alt="" class="deco">
-        <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
+        <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
         </div>
       </div>
       <GoogleMaps id="map" :adresses=" [evenement.adresse] " :id-div="'map'"/>

@@ -32,7 +32,7 @@ const envoyer = () => {
         <div class="indicator"><span></span>Créer un événement</div>
         <h1 class="grand-titre">Organisez votre <br><span class="color-blue">Intervachettes</span></h1>
         <span class="texte-gris-simple">Remplissez ce formulaire pour créer votre événement Intervachettes.</span>
-        <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
+        <div onclick="window.history.back()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en arrière
         </div>
       </div>
       <img src="@/assets/img/illu-creation.png" alt="fond" class="illu"/>
