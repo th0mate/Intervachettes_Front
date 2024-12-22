@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {ApiResponse, Evenement, Inscription} from "@/types";
+import type { Evenement, Inscription} from "@/types";
 import router from "@/router";
 import GoogleMaps from "@/components/GoogleMaps.vue";
 import {ref, type Ref} from "vue";
@@ -16,10 +16,12 @@ const adresseEnTableau = [props.evenement.adresse];
 
 const inscriptions: Ref<Inscription[]> = ref([]);
 
-apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
-  .then(reponseJSON => {
-    inscriptions.value = reponseJSON.member;
-  })
+if(props.evenement.estPublic) {
+  apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
+    .then(reponseJSON => {
+      inscriptions.value = reponseJSON.member;
+    })
+}
 
 </script>
 
@@ -35,8 +37,8 @@ apiStore.getAll(`inter_vachettes/${props.evenement.id}/inscriptions`)
       <span class="texte-gris-simple"><i class="fi fi-rr-marker color-blue"></i> {{ evenement.adresse }}</span>
       <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">{{ inscriptions.length === null ? evenement.nbParticipantsMax : evenement.nbParticipantsMax - inscriptions.length }}</span>
-            <span>{{ inscriptions.length === 0 ? 'Places Totales' : 'Places restantes' }}</span>
+            <span class="chiffre">{{ evenement.nbParticipantsMax - inscriptions.length }}</span>
+            <span>{{ props.evenement.est_public ? 'Places restantes' : 'Places Totales' }}</span>
           </span>
         <span class="chiffre-cle">
             <span class="chiffre">{{ inscriptions.length || "?" }}</span>

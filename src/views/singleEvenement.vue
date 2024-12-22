@@ -56,6 +56,9 @@ function estDejaInscrit(idEvenement: number): boolean {
   if (!apiStore.estConnecte) {
     return false;
   }
+  if(!evenement.value.est_public) {
+    return false;
+  }
 
   if (evenement.value.organisateur && evenement.value.organisateur.id === apiStore.utilisateurConnecte.id) {
     return false;
