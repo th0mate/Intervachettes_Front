@@ -2,7 +2,7 @@ import { reactive } from "vue";
 import type {Utilisateur, ApiResponse} from "@/types";
 
 export const apiStore = reactive({
-  apiUrl: "https://localhost/InterVachettesAPI/public/api/",
+  apiUrl: "http://localhost/InterVachettesAPI/public/api/",
   utilisateurConnecte: null as Utilisateur | null,
   estConnecte: false,
 

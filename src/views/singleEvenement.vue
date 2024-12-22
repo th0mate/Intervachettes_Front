@@ -52,6 +52,20 @@ function hasDateConflict(newEvent) {
   });
 }
 
+function estDejaInscrit(idEvenement: number): boolean {
+  if (!apiStore.estConnecte) {
+    return false;
+  }
+
+  if (evenement.value.organisateur && evenement.value.organisateur.id === apiStore.utilisateurConnecte.id) {
+    return false;
+  }
+
+  return inscriptionsUserConnect.value.some(inscription => {
+    return inscription.evenements.id === idEvenement;
+  });
+}
+
 function inscrireUtilisateur() {
   if (!apiStore.estConnecte) {
     notify({
@@ -160,7 +174,7 @@ function inscrireUtilisateur() {
         <span class="texte-gris-simple"><i class="fi fi-rr-calendar-clock color-blue"></i> {{
             evenement.adresse
           }}</span>
-        <div @click="inscrireUtilisateur" class="bouton icon-animation">Inscription à l'événement<i
+        <div v-if="estDejaInscrit(evenement.id)" @click="inscrireUtilisateur" class="bouton icon-animation">Inscription à l'événement<i
           class="fi fi-rr-arrow-right"></i>
         </div>
       </div>
