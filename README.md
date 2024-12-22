@@ -60,7 +60,7 @@ Le premier projet (PagesVertes) s'est fait avant l'arrivée de Sascha Levy dans 
 
 
 
-InterVachettesAPI
+###InterVachettes Front
 - Lorick
     - Initialisation de l'apiStore
     - Connexion et inscription des utilisateurs
