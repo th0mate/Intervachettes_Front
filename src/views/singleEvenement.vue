@@ -194,7 +194,7 @@ const deleteUser = () => {
             <span>{{ evenement.estPublic ? 'Places restantes' : 'Places Totales' }}</span>
           </span>
           <span class="chiffre-cle">
-            <span class="chiffre">{{ inscriptions.length || "?" }}</span>
+            <span class="chiffre">{{ inscriptions.length || "N/A" }}</span>
             <span>Candidats inscrits</span>
           </span>
         </div>
