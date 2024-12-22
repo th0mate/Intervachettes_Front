@@ -40,7 +40,6 @@ const envoyer = () => {
         title: 'La création a échoué, vous n\'êtes peut-être pas organisateur ou admin!',
         group: 'custom-template'
       });
-      console.log(error);
     });
 
 }
