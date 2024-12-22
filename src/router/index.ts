@@ -55,12 +55,12 @@ const router = createRouter({
  * Permet de fermer le menu responsive lors d'un changement de route
  */
 router.beforeEach((to, from, next) => {
-  const menu = document.querySelector('.menu-responsive')
+  const menu = document.querySelector('.menu-responsive') as HTMLElement | null;
   if (menu && menu.style.display === 'flex') {
-    menu.style.display = 'none'
+    menu.style.display = 'none';
   }
-  next()
-})
+  next();
+});
 
 
 export default router

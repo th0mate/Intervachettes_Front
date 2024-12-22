@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref, type Ref} from "vue";
-import type {Evenement, Inscription, Utilisateur} from "@/types";
+import type {Evenement, Inscription, Utilisateur, ApiResponse} from "@/types";
 import {apiStore} from "@/util/apiStore";
 import router from "@/router";
 
@@ -11,13 +11,23 @@ const organisations: Ref<Evenement[]> = ref([]);
 
 function chargerEvenements() {
   apiStore.getRessourceConnected('utilisateurs/' + props.utilisateur.id + '/inscriptions')
-      .then(reponseJSON => {
-        inscriptions.value = reponseJSON['member'];
-      });
+    .then(reponseJSON => {
+      const response = reponseJSON as ApiResponse;
+      if (Array.isArray(response['member'])) {
+        inscriptions.value = response['member'] as Inscription[];
+      } else {
+        console.error("Unexpected response format", response);
+      }
+    });
   apiStore.getRessourceConnected('utilisateurs/' + props.utilisateur.id + '/intervachettesorganises')
-      .then(reponseJSON => {
-        organisations.value = reponseJSON['member'];
-      });
+    .then(reponseJSON => {
+      const response = reponseJSON as ApiResponse;
+      if (Array.isArray(response['member'])) {
+        organisations.value = response['member'] as Evenement[];
+      } else {
+        console.error("Unexpected response format", response);
+      }
+    });
 }
 
 chargerEvenements();

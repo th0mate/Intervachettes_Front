@@ -5,16 +5,27 @@ import type { Utilisateur } from '@/types';
 import { notify } from "@kyvg/vue3-notification";
 
 const props = defineProps<{ utilisateur: Utilisateur }>();
-const emit = defineEmits<{ updated: () => void }>();
+const emit = defineEmits(['updated']);
 
 const localUtilisateur = ref({ ...props.utilisateur });
 
 const updateUser = () => {
+  if (typeof apiStore.utilisateurConnecte !== 'number') {
+    notify({
+      type: 'error',
+      title: 'Erreur',
+      text: 'Utilisateur non connecté ou identifiant invalide',
+      group: 'custom-template'
+    });
+    return;
+  }
+
   apiStore.update('utilisateurs', localUtilisateur.value, apiStore.utilisateurConnecte, true)
     .then(() => {
       notify({
         type: 'success',
-        title: 'Utilisateur modifié'
+        title: 'Profil modifié avec succès',
+        group: 'custom-template'
       });
       emit('updated');
     });
