@@ -18,6 +18,13 @@ Le premier projet (PagesVertes) s'est fait avant l'arrivée de Sascha Levy dans 
 - [InterVachettes - Front (Front VueJS)](https://gitlabinfo.iutmontp.univ-montp2.fr/projetweb1/intervachettesfront)
 
 
+## Remplir la base de donnée
+Nous avons rédigé 2 scripts SQL pour remplir les bases de données (annuaire et API Symfony) que nous avons déposé sur moodle.
+Vous pouvez aussi les trouver à la racine du projet intervachettes (API Symfony). Les fichiers se nomment "insertionTablePagesVertes.sql" et "insertionTableInterVachettes.sql".
+Nous partons du principe que la BD a été crée avant de faire les commandes.
+
+
+
 ## Répartition des tâches
 
 ### InterVachettesAPI
