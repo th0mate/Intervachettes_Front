@@ -94,6 +94,7 @@ InterVachettesAPI
     - Affichage de la liste des événements
     - Création des composants et des vues
     - Fonctionnalités de recherche et API Google Maps
+    - Correction des erreurs du Linter
 
 
 - Sascha
