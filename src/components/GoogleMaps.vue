@@ -14,7 +14,7 @@ async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
   compteur++;
 
   if (compteur > 5) {
-    console.error('Tentatives de reconnexion épuisées');
+    console.warn('Google Maps : Tentatives de reconnexion épuisées');
     return;
   }
 

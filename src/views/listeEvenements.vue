@@ -108,8 +108,13 @@ chargerEvenements();
 
     </div>
 
-    <div class="liste-evenements" v-for="evenement in evenements" :key="evenement.id">
+    <div v-if="evenements.length > 0" class="liste-evenements" v-for="evenement in evenements" :key="evenement.id">
       <WrapTinyEvenement :evenement="evenement"/>
+    </div>
+
+    <div v-else class="erreur">
+      <i class="fi fi-rr-exclamation icone-erreur"></i>
+      <h1 class="color-blue">Aucun événement à afficher</h1>
     </div>
   </section>
 
