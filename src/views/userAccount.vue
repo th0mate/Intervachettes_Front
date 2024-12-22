@@ -13,12 +13,6 @@ const route = useRoute();
 const id = route.params.id;
 const user: Ref<Utilisateur[]> = ref('Chargement');
 
-const estUtilisateurConnecte = ref(false);
-
-if (apiStore.estConnecte && apiStore.utilisateurConnecte.id === parseInt(id)) {
-  estUtilisateurConnecte.value = true;
-}
-
 const affichageAction = ref('profil');
 
 const toggleEdit = (action) => {
@@ -35,7 +29,7 @@ apiStore.getById('utilisateurs', id)
   });
 
 const deleteUser = () => {
-  if (!estUtilisateurConnecte.value) {
+  if (!apiStore.utilisateurConnecte.id === parseInt(id)) {
     notify({
       type: 'error',
       title: 'Impossible de supprimer le compte',
@@ -64,10 +58,16 @@ const deleteUser = () => {
     }
   }
 };
+
+const loaded = ref(false);
+
+apiStore.refresh();
+
+loaded.value = true;
 </script>
 
 <template>
-  <section class="compte">
+  <section class="compte" v-if="loaded">
 
     <div class="wrap-compte">
 
@@ -86,14 +86,14 @@ const deleteUser = () => {
           <div onclick="revenirEnArriere()" class="bouton fond-bleu"><i class="fi fi-rr-angle-left"></i>Revenir en
             arrière
           </div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
+          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('profil')" class="bouton icon-animation">Infos du compte<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
+          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('editer')" class="bouton icon-animation">Modifier le
             compte<i
               class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
+          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="toggleEdit('events')" class="bouton icon-animation">Événements liés<i
             class="fi fi-rr-arrow-right"></i></div>
-          <div v-if="estUtilisateurConnecte" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
+          <div v-if="apiStore.utilisateurConnecte.id === parseInt(id)" @click="deleteUser" class="bouton icon-animation">Supprimer le compte<i
             class="fi fi-rr-arrow-right"></i></div>
         </div>
       </div>
