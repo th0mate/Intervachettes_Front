@@ -11,7 +11,7 @@ function redirigerPagesVertes() {
   window.open(apiStore.pagesVertesUrl, '_blank');
 }
 
-let user: Ref<UtilisateurPagesVertes> = ref({});
+const user: Ref<UtilisateurPagesVertes> = ref({});
 
 function synchroniserInfoAvecPagesVertes()
 {
@@ -29,7 +29,7 @@ function synchroniserInfoAvecPagesVertes()
         return;
       }
 
-      let dataToUpdate = {
+      const dataToUpdate = {
         "adresseMail": user.value.adresseEmail,
         "nom": user.value.nom,
         "prenom": user.value.prenom
@@ -46,7 +46,7 @@ function synchroniserInfoAvecPagesVertes()
         .catch(() => {
           notifyError();
         });
-    }).catch(error => {
+    }).catch(() => {
     notifyError();
   });
 }

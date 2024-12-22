@@ -108,8 +108,10 @@ chargerEvenements();
 
     </div>
 
-    <div v-if="evenements.length > 0" class="liste-evenements" v-for="evenement in evenements" :key="evenement.id">
-      <WrapTinyEvenement :evenement="evenement"/>
+    <div v-if="evenements.length > 0">
+      <div class="liste-evenements" v-for="evenement in evenements" :key="evenement.id">
+        <WrapTinyEvenement :evenement="evenement"/>
+      </div>
     </div>
 
     <div v-else class="erreur">

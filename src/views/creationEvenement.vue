@@ -34,7 +34,7 @@ const envoyer = () => {
       });
       router.push({name: 'accueil'});
     })
-    .catch(error => {
+    .catch(() => {
       notify({
         type: 'error',
         title: 'La création a échoué, vous n\'êtes peut-être pas organisateur ou admin!',

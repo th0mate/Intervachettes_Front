@@ -182,7 +182,7 @@ export const apiStore = reactive ({
   getFromPagesVertes(ressource: string): Promise<unknown> {
     return fetch(this.pagesVertesUrl + ressource)
       .then(reponsehttp => reponsehttp.json())
-      .catch(error => {
+      .catch(() => {
       })
   },
 });
