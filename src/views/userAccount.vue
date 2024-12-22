@@ -31,6 +31,15 @@ apiStore.getById('utilisateurs', id)
   .then(reponseJSON => {
     Object.assign(user, reponseJSON);
   });
+function getUser()
+{
+  apiStore.getById('utilisateurs', parseInt(id))
+    .then(reponseJSON => {
+      user.value = reponseJSON;
+    });
+}
+
+getUser();
 
 const deleteUser = () => {
   if (!apiStore.utilisateurConnecte || apiStore.utilisateurConnecte.id !== parseInt(id)) {
@@ -99,7 +108,7 @@ loaded.value = true;
 
       <div class="droite-compte">
 
-        <InformationUser class="ongletCompte" v-if="affichageAction === 'profil'" :utilisateur="user"/>
+        <InformationUser class="ongletCompte" v-if="affichageAction === 'profil'" :utilisateur="user" @updated="getUser"/>
         <UpdateUser class="ongletCompte" v-if="affichageAction === 'editer'" :utilisateur="user"
                     @updated="handleUpdate"/>
         <EvenementsUser class="ongletCompte" v-if="affichageAction === 'events'" :utilisateur="user"/>

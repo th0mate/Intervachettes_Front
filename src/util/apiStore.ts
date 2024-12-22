@@ -1,7 +1,8 @@
 import { reactive } from "vue";
 import type {Utilisateur, ApiResponse} from "@/types";
 
-export const apiStore = reactive({
+export const apiStore = reactive ({
+  pagesVertesUrl: "http://localhost/annuairesymfony/public/",
   apiUrl: "http://localhost/InterVachettesAPI/public/api/",
   utilisateurConnecte: null as Utilisateur | null,
   estConnecte: false,
@@ -156,4 +157,53 @@ export const apiStore = reactive({
       }
     });
   },
+
+  getFromPagesVertes(ressource: string): Promise<unknown> {
+    return fetch(this.pagesVertesUrl + ressource)
+      .then(reponsehttp => reponsehttp.json())
+      .catch(error => {
+      })
+  },
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
