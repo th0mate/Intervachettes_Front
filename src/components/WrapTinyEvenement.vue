@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Evenement} from "@/types";
+import type {Evenement, Inscription} from "@/types";
 import router from "@/router";
 import GoogleMaps from "@/components/GoogleMaps.vue";
 import {ref, type Ref} from "vue";

@@ -1,4 +1,10 @@
 <script setup lang="ts">
+declare global {
+  interface Window {
+    google: typeof google;
+  }
+}
+
 const openCageApiKey = '9926c5c68d1049699aa98588422de554';
 const googleMapsApiKey = 'AIzaSyBWb0BhFaft2KGEB950XZKunK3-g0T-Uns';
 const props = defineProps<{ adresses: string[], idDiv: string }>();
@@ -6,13 +12,13 @@ const props = defineProps<{ adresses: string[], idDiv: string }>();
 async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
   try {
     await loadGoogleMapsScript(googleMapsApiKey);
-    const map = new google.maps.Map(document.getElementById(idDiv), {
+    const map = new window.google.maps.Map(document.getElementById(idDiv), {
       center: { lat: 0, lng: 0 },
       zoom: 2,
       disableDefaultUI: true,
     });
 
-    const bounds = new google.maps.LatLngBounds();
+    const bounds = new window.google.maps.LatLngBounds();
 
     for (const adresse of adresses) {
       const location = encodeURIComponent(adresse);
@@ -22,7 +28,7 @@ async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
       if (data.results.length > 0) {
         const { lat, lng } = data.results[0].geometry;
         const position = { lat, lng };
-        new google.maps.Marker({
+        new window.google.maps.Marker({
           position,
           map,
           title: adresse
@@ -35,9 +41,9 @@ async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
 
     map.fitBounds(bounds);
 
-    const listener = google.maps.event.addListener(map, "idle", function() {
+    const listener = window.google.maps.event.addListener(map, "idle", function() {
       if (map.getZoom() > 10) map.setZoom(6);
-      google.maps.event.removeListener(listener);
+      window.google.maps.event.removeListener(listener);
     });
 
   } catch (error) {
@@ -46,7 +52,7 @@ async function afficherCarteGoogleMaps(adresses: string[], idDiv: string) {
   }
 }
 
-function loadGoogleMapsScript(apiKey) {
+function loadGoogleMapsScript(apiKey: string): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.getElementById('google-maps-script')) {
       resolve();
