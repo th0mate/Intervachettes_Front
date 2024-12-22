@@ -18,14 +18,13 @@ const evenement: Ref<Evenement> = ref({});
 apiStore.getById('inter_vachettes', id)
   .then(reponseJSON => {
     evenement.value = reponseJSON;
+    if(evenement.value.estPublic) {
+      apiStore.getRessourceConnected(`inter_vachettes/${id}/inscriptions`)
+        .then(reponseJSON => {
+          inscriptions.value = reponseJSON.member;
+        });
+    }
   });
-
-if(evenement.value.est_public) {
-  apiStore.getRessourceConnected(`inter_vachettes/${id}/inscriptions`)
-    .then(reponseJSON => {
-      inscriptions.value = reponseJSON.member;
-    });
-}
 
 function chargerEvenements() {
   if (apiStore.estConnecte) {
@@ -54,7 +53,7 @@ function estDejaInscrit(idEvenement: number): boolean {
   if (!apiStore.estConnecte) {
     return false;
   }
-  if(!evenement.value.est_public) {
+  if(!evenement.value.estPublic) {
     return false;
   }
 
@@ -158,8 +157,8 @@ function inscrireUtilisateur() {
 
         <div class="chiffres-cles">
           <span class="chiffre-cle">
-            <span class="chiffre">{{ inscriptions.length === null ? evenement.nbParticipantsMax : evenement.nbParticipantsMax - inscriptions.length }}</span>
-            <span>{{ inscriptions.length === 0 ? 'Places Totales' : 'Places restantes' }}</span>
+            <span class="chiffre">{{ evenement.nbParticipantsMax - inscriptions.length }}</span>
+            <span>{{ evenement.estPublic ? 'Places restantes' : 'Places Totales' }}</span>
           </span>
           <span class="chiffre-cle">
             <span class="chiffre">{{ inscriptions.length || "?" }}</span>

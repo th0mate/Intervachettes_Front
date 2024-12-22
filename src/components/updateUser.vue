@@ -10,7 +10,6 @@ const emit = defineEmits(['updated']);
 const localUtilisateur = ref({ ...props.utilisateur });
 
 const updateUser = () => {
-  console.log('updateUser');
   apiStore.update('utilisateurs', localUtilisateur.value, apiStore.utilisateurConnecte.id, true)
     .then(() => {
       notify({

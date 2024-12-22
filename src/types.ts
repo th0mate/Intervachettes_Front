@@ -24,15 +24,6 @@ export interface Evenement {
   organisateur: Utilisateur;
 }
 
-export interface Utilisateur {
-  id: number;
-  adresseMail: string;
-  login: string;
-  codePagesVertes: string;
-  Description: string;
-  Facebook: string;
-}
-
 export interface Inscription {
   id: number;
   participant: Utilisateur;

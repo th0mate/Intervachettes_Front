@@ -38,7 +38,7 @@ if(props.evenement.estPublic) {
       <div class="chiffres-cles">
           <span class="chiffre-cle">
             <span class="chiffre">{{ evenement.nbParticipantsMax - inscriptions.length }}</span>
-            <span>{{ props.evenement.est_public ? 'Places restantes' : 'Places Totales' }}</span>
+            <span>{{ evenement.estPublic ? 'Places restantes' : 'Places Totales' }}</span>
           </span>
         <span class="chiffre-cle">
             <span class="chiffre">{{ inscriptions.length || "?" }}</span>
