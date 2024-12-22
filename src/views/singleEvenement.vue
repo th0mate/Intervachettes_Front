@@ -30,7 +30,7 @@ function chargerEvenements() {
 
 chargerEvenements();
 
-const evenement: Ref<Evenement[]> = ref('Chargement');
+const evenement: Ref<Evenement> = ref('Chargement');
 apiStore.getById('inter_vachettes', id)
   .then(reponseJSON => {
     evenement.value = reponseJSON;
