@@ -1,0 +1,200 @@
+:root {
+    --gris-texte: #5B5C66;
+    --bleu-main: #4361EE;
+    --gris-fonce-titres: #28303F;
+    --gris-clair-background: #f7f5fa;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.active-link {
+    color: var(--bleu-main) !important;
+}
+
+
+/**
+------------------------------------------------------------------------------------------------------------------------
+DEFINITION DES BOUTONS
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+.bouton {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border-radius: 50px;
+    border: 2px solid var(--bleu-main);
+    margin: 0;
+    width: fit-content;
+    font-weight: bold;
+
+
+    i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        padding-right: 10px;
+    }
+}
+
+.fond-bleu {
+    background: var(--bleu-main);
+    color: white;
+
+    &:hover {
+        background: white;
+        color: var(--bleu-main);
+    }
+}
+
+.border-bleu {
+    background: white;
+    color: var(--bleu-main);
+
+    &:hover {
+        background: var(--bleu-main);
+        color: white;
+    }
+}
+
+.icon-animation {
+    justify-content: flex-start;
+    gap: 10px;
+    padding-right: 50px;
+    background: var(--bleu-main);
+    color: white;
+    position: relative;
+
+    i {
+        padding: 0;
+        transition: all 0.5s ease;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+    &:hover {
+        i {
+            right: 10px;
+        }
+    }
+}
+
+
+/**
+------------------------------------------------------------------------------------------------------------------------
+DEFINITION DES CLASSES GENERIQUES
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+.texte-gris-simple {
+    color: var(--gris-texte);
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.tres-grand-titre {
+    font-size: 5em;
+    font-weight: bolder;
+    color: var(--bleu-main);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.grand-titre {
+    font-size: 4em;
+    font-weight: bolder;
+    color: var(--gris-fonce-titres);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+/**
+------------------------------------------------------------------------------------------------------------------------
+DEFINITION DES INDICATEURS
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+.indicator {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: bolder;
+
+    span {
+        display: flex;
+        width: 50px;
+        height: 3px;
+        background: var(--bleu-main);
+        transition: all 0.5s ease-in-out;
+    }
+
+    &:hover {
+        span {
+            width: 75px;
+        }
+    }
+}
+
+.color-blue {
+    color: var(--bleu-main);
+}
+
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+ERREUR
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+
+.erreur {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding-top: 50px;
+    text-align: center;
+
+    .icone-erreur {
+        font-size: 5em;
+        color: var(--bleu-main);
+    }
+}
+
+
+
+/**
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE COMMUN
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+@media (max-width: 700px) {
+    .tres-grand-titre {
+        font-size: 2.5em;
+    }
+
+    .grand-titre {
+        font-size: 2em;
+    }
+}

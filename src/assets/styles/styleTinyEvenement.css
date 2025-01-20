@@ -1,0 +1,104 @@
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+.tinyEvenemenent {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: var(--gris-clair-background);
+    border: 2px solid var(--gris-fonce-titres);
+
+    .wrap-texte {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h1 {
+            font-size: 2em;
+        }
+
+        .description {
+
+            .reverse {
+                display: inline-block;
+                transform: scaleX(-1);
+            }
+
+            i {
+                font-size: 1em;
+            }
+        }
+
+        .chiffres-cles {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            padding-top: 10px;
+
+            .chiffre-cle {
+                display: flex;
+                align-content: center;
+                gap: 10px;
+
+                .chiffre {
+                    font-size: 2.5em;
+                    font-weight: bold;
+                    color: var(--bleu-main);
+                }
+
+                span:not(.chiffre) {
+                    font-size: 1.2em;
+                    color: black;
+                    font-weight: bolder;
+                    flex-wrap: wrap;
+                    display: flex;
+                    align-content: center;
+                }
+            }
+        }
+
+        .bouton {
+            font-weight: bold;
+            width: fit-content !important;
+        }
+    }
+
+    .map {
+        width: 800px !important;
+        height: 300px !important;
+        border-radius: 15px;
+
+        * {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+
+
+@media (max-width: 990px) {
+
+    .tinyEvenemenent {
+        flex-direction: column;
+
+        .map {
+            width: 100% !important;
+        }
+    }
+
+}

@@ -1,0 +1,221 @@
+section {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 75px;
+}
+
+.presentation-single-evenement {
+    margin-top: 50px;
+
+    div:not(.bouton, #map, .indicator) {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        max-width: calc(100% - 700px);
+
+        .deco {
+            position: absolute;
+            right: 0;
+            bottom: 150px;
+            width: 200px;
+            z-index: -1;
+        }
+    }
+
+    #map {
+        width: 500px !important;
+        height: 300px;
+        border-radius: 20px;
+    }
+}
+
+
+.presentation-description {
+    flex-direction: column;
+    background-color: var(--gris-clair-background);
+
+    div:not(.indicator) {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+
+        i {
+            font-size: 2em;
+            display: inline-flex;
+            justify-content: flex-end;
+        }
+
+        .reverse {
+            display: inline-flex;
+            transform: scaleX(-1);
+            justify-content: flex-end;
+        }
+    }
+}
+
+.autres-infos-event {
+    padding-right: 0;
+    align-items: center;
+    padding-bottom: 50px;
+
+    .autres-infos {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .chiffres-cles {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            padding-top: 10px;
+
+            .chiffre-cle {
+                display: flex;
+                align-content: center;
+                gap: 10px;
+
+                .chiffre {
+                    font-size: 2.5em;
+                    font-weight: bold;
+                    color: var(--bleu-main);
+                }
+
+                span:not(.chiffre) {
+                    font-size: 1.2em;
+                    color: black;
+                    font-weight: bolder;
+                    flex-wrap: wrap;
+                    display: flex;
+                    align-content: center;
+                }
+            }
+        }
+
+    }
+
+    .pages-vertes {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 950px;
+        height: 350px;
+
+        .deco {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+        }
+
+        .infos {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            width: 80%;
+            box-sizing: border-box;
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                color: white;
+            }
+
+            .infos-organisateur {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                background-color: white;
+                border-radius: 15px;
+                gap: 30px;
+                color: var(--gris-texte);
+                width: 100%;
+
+                div:not(.bouton) {
+                    display: flex;
+                    gap: 15px;
+                    width: 100%;
+
+                    i {
+                        font-size: 1.5em;
+                    }
+                }
+
+
+            }
+        }
+    }
+
+}
+
+
+
+/*
+------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+------------------------------------------------------------------------------------------------------------------------
+ */
+
+@media (max-width: 1190px) {
+    .autres-infos-event {
+        flex-direction: column;
+
+        .pages-vertes {
+            width: 400px;
+            height: 400px;
+
+            .deco {
+                border-radius: 30px;
+            }
+        }
+    }
+
+    #map {
+        width: 95% !important;
+    }
+}
+
+@media (max-width: 1175px) {
+    .presentation-single-evenement {
+        flex-direction: column;
+        gap: 20px;
+
+        div:not(.bouton, #map, .indicator) {
+            max-width: 100%;
+        }
+
+        #map {
+            width: 95% !important;
+        }
+    }
+}
+
+
+@media (max-width: 600px) {
+    section {
+        padding: 20px 10px;
+    }
+
+    .autres-infos-event {
+
+        .pages-vertes {
+            width: 95%;
+            min-height: 400px;
+            height: auto !important;
+
+            .deco {
+                border-radius: 30px;
+            }
+        }
+    }
+}
